@@ -3,7 +3,6 @@ import glob
 import pandas as pd
 from pathlib import Path
 
-# Load metadata to get genome file paths
 metadata_file = "data/merged_genomes_data.csv"
 if os.path.exists(metadata_file):
     metadata = pd.read_csv(metadata_file)
@@ -46,7 +45,6 @@ rule prodigal:
         os.path.join("benchmarks", "prodigal", "{genome_id}.txt")
     conda:
         "envs/prodigal.yaml"
-    message: "Running Prodigal for gene prediction on {wildcards.genome_id}."
     shell:
         """
         mkdir -p {PROTEIN_DIR} logs/prodigal
@@ -68,7 +66,6 @@ rule interproscan:
         os.path.join("logs", "interproscan", "{genome_id}.log")
     benchmark:
         os.path.join("benchmarks", "interproscan", "{genome_id}.txt")
-    message: "Running InterProScan (Pfam) on predicted proteins for {wildcards.genome_id}."
     shell:
         """
         mkdir -p logs/interproscan
@@ -86,7 +83,6 @@ rule predict_traits:
         os.path.join("logs", "predict", "{genome_id}.log")
     benchmark:
         os.path.join("benchmarks", "predict_traits", "{genome_id}.txt")
-    message: "Predicting traits for {wildcards.genome_id} based on InterProScan results."
     shell:
         """
         mkdir -p {RESULTS_DIR}/predictions logs/predict
@@ -103,7 +99,6 @@ rule aggregate_results:
         os.path.join("logs", "aggregate_results.log")
     benchmark:
         os.path.join("benchmarks", "aggregate_results.txt")
-    message: "Aggregating all individual genome predictions into a final CSV."
     script:
         "scripts/aggregate_results.py"
 
