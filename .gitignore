@@ -1,1 +1,8 @@
 .DS_Store
+.snakemake
+benchmarks
+data
+logs
+models
+results
+temp
