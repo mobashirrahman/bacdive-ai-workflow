@@ -64,6 +64,8 @@ properties:
     minimum: 100
   test_mode:
     type: boolean
+  genomes_file:
+    type: string
   publish_docs:
     type: boolean
   model_archive:

@@ -24,7 +24,7 @@ TEST_MODE = config.get("test_mode", False)
 PUBLISH_DOCS = config.get("publish_docs", True)
 
 SUBDIR = ".test" if TEST_MODE else "config"
-GENOMES_FILE = str(BENCH / SUBDIR / "genomes.tsv")
+GENOMES_FILE = config.get("genomes_file", str(BENCH / SUBDIR / "genomes.tsv"))
 MAPPING_FILE = str(BENCH / SUBDIR / "label_mapping.yaml")
 FIXTURE_SHORTCUT = str(BENCH / ".test" / "shortcut")
 TEST_LABELS = str(BENCH / ".test" / "training_labels.csv")

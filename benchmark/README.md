@@ -6,8 +6,12 @@ annotation robustness (D). Design in `docs/BENCHMARK.md` (Phase 8).
 
 ```bash
 snakemake -s benchmark/Snakefile --directory <data_root>/run \
-  --workflow-profile benchmark/profiles/local --sdm conda --cores 16
+  --workflow-profile benchmark/profiles/local --sdm conda --cores 16 \
+  --resources ips=4
 ```
+
+InterProScan runs offline and version-pure (`-dp`); `--resources ips=4`
+caps concurrent InterProScan jobs at 4 (each uses threads 4).
 
 Config: `benchmark/config/config.yaml`. Selection `genomes.tsv` and
 `label_mapping.yaml` are frozen in Phase 3; logic lives in
