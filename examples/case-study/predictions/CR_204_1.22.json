@@ -1,0 +1,39 @@
+{
+  "genome_file": "CR_204_1.22.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 91.5
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 85.52
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 95.36
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 96.53
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 58.68
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 96.54
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 97.76
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 94.5
+    }
+  },
+  "sample_id": "CR_204_1.22",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

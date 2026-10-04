@@ -1,0 +1,39 @@
+{
+  "genome_file": "A_149.35.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 92.81
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 85.71
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 93.15
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 57.33
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 65.16
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 89.33
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 90.72
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 80.55
+    }
+  },
+  "sample_id": "A_149.35",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

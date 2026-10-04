@@ -1,0 +1,39 @@
+{
+  "genome_file": "GCF_943169685.1.fna.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 96.5
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 95.03
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 99.25
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 94.81
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 86.27
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 98.91
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.7
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 98.0
+    }
+  },
+  "sample_id": "GCF_943169685.1",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

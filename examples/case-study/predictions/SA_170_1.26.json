@@ -1,0 +1,39 @@
+{
+  "genome_file": "SA_170_1.26.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 75.58
+    },
+    "Gram-positive": {
+      "prediction": true,
+      "confidence": 76.59
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 94.88
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 94.85
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 74.46
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 97.99
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.66
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 95.75
+    }
+  },
+  "sample_id": "SA_170_1.26",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

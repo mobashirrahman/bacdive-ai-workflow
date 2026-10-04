@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1011_Saliva.32.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 94.75
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 90.51
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 95.07
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 95.04
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 73.61
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 94.3
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.79
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 92.3
+    }
+  },
+  "sample_id": "AB1011_Saliva.32",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

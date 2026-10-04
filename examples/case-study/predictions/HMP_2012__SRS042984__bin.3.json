@@ -1,0 +1,39 @@
+{
+  "genome_file": "HMP_2012__SRS042984__bin.3.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 95.0
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 96.46
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 100.0
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 95.24
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 76.91
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 99.28
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.67
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 96.26
+    }
+  },
+  "sample_id": "HMP_2012__SRS042984__bin.3",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

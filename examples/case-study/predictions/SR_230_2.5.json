@@ -1,0 +1,39 @@
+{
+  "genome_file": "SR_230_2.5.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 99.5
+    },
+    "Gram-positive": {
+      "prediction": true,
+      "confidence": 92.52
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 96.95
+    },
+    "Aerobic": {
+      "prediction": true,
+      "confidence": 91.13
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 98.68
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 100.0
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 97.74
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 99.0
+    }
+  },
+  "sample_id": "SR_230_2.5",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

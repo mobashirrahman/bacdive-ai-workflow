@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1452_Saliva.61.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 93.33
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 96.7
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 97.38
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 87.26
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 70.63
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 98.4
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 96.13
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 96.75
+    }
+  },
+  "sample_id": "AB1452_Saliva.61",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

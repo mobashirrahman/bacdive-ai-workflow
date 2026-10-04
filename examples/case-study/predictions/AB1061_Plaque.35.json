@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1061_Plaque.35.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 92.0
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 95.67
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 98.4
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 73.43
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 82.22
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 96.37
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 94.89
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 86.05
+    }
+  },
+  "sample_id": "AB1061_Plaque.35",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

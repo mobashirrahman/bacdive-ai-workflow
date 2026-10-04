@@ -1,0 +1,8 @@
+# Paths are relative to the directory in which Snakemake is run.
+samples: examples/samples.tsv
+metadata: examples/metadata.tsv
+model_dir: models
+traits: [acidophile, gram-positive, spore-forming, aerobic, anaerobic, thermophile, psychrophile, motile2+]
+evalue: 1.0e-20
+interproscan: interproscan.sh
+prodigal_mode: meta

@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1035_Saliva.24.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 91.28
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 96.45
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 99.43
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 93.87
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 78.58
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 97.0
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.95
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 92.71
+    }
+  },
+  "sample_id": "AB1035_Saliva.24",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

@@ -1,0 +1,39 @@
+{
+  "genome_file": "AC_112_1.13.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 95.64
+    },
+    "Gram-positive": {
+      "prediction": true,
+      "confidence": 94.5
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 95.38
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 92.82
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 63.14
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 98.48
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 99.94
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 97.21
+    }
+  },
+  "sample_id": "AC_112_1.13",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

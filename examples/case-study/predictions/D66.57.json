@@ -1,0 +1,39 @@
+{
+  "genome_file": "D66.57.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 91.5
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 93.07
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 97.28
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 93.61
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 90.32
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 99.0
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 96.48
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 95.5
+    }
+  },
+  "sample_id": "D66.57",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

@@ -1,0 +1,6 @@
+cores: 4
+rerun-incomplete: true
+printshellcmds: true
+default-resources:
+  - mem_mb=2048
+  - runtime=60

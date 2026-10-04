@@ -1,105 +1,140 @@
-import os
-import glob
-import pandas as pd
+"""Genome, protein, or annotation inputs converge on validated trait predictions."""
+
+import math
+import sys
 from pathlib import Path
 
-metadata_file = "data/merged_genomes_data.csv"
-if os.path.exists(metadata_file):
-    metadata = pd.read_csv(metadata_file)
-    GENOMES = metadata["genome_address"].tolist()
-    # Extract just the filename part for outputs
-    GENOME_IDS = [os.path.basename(path).replace('.fa', '') for path in GENOMES]
-else:
-    # Fallback if no metadata file
-    GENOMES = []
-    GENOME_IDS = []
-    print(f"Warning: {metadata_file} not found. No genomes defined.")
+ROOT = Path(workflow.basedir).resolve()
+sys.path.insert(0, str(ROOT))
 
-# Output directory configuration
-INTERPRO_DIR = "results/interpro_results"
-RESULTS_DIR = "results"
-PROTEIN_DIR = "results/proteins"
+from bacdive_workflow.common import TRAITS, WorkflowError, load_samples
 
-# Create output directories
-os.makedirs(INTERPRO_DIR, exist_ok=True)
-os.makedirs(RESULTS_DIR, exist_ok=True)
-os.makedirs(PROTEIN_DIR, exist_ok=True)
+configfile: "config/config.yaml"
 
-# Define the final target rule
+SAMPLES_FILE = config.get("samples", "examples/samples.tsv")
+SAMPLES = load_samples(SAMPLES_FILE)
+REFERENCE = config.get("metadata")
+if REFERENCE and not Path(REFERENCE).is_file():
+    raise WorkflowError(f"Reference metadata does not exist: {REFERENCE}")
+SELECTED = config.get("traits", list(TRAITS))
+if not isinstance(SELECTED, list) or not SELECTED or len(set(SELECTED)) != len(SELECTED) or any(t not in TRAITS for t in SELECTED):
+    raise WorkflowError("traits must be a nonempty list of unique supported traits.")
+EVALUE = float(config.get("evalue", 1e-20))
+if not math.isfinite(EVALUE) or EVALUE <= 0:
+    raise WorkflowError("evalue must be finite and positive.")
+MODELS = [str(Path(config.get("model_dir", "models")) / f"{trait}_data.p") for trait in SELECTED]
+PRODIGAL_MODE = config.get("prodigal_mode", "meta")
+if PRODIGAL_MODE not in ("meta", "single"):
+    raise WorkflowError("prodigal_mode must be meta or single.")
+PYTHON_SOURCES = [str(p) for p in sorted((ROOT / "bacdive_workflow").glob("*.py"))]
+
+
+def protein_input(wildcards):
+    row = SAMPLES[wildcards.sample]
+    return row.get("protein_path") or f"results/proteins/{wildcards.sample}.faa"
+
+
+def annotation_input(wildcards):
+    row = SAMPLES[wildcards.sample]
+    return row.get("annotation_path") or f"results/interpro/{wildcards.sample}.tsv"
+
+
 rule all:
     input:
-        os.path.join(RESULTS_DIR, "bacdive_ai_predictions.csv")
-    benchmark:
-        os.path.join("benchmarks", "all.txt")
-    message: "Finalizing all predictions."
+        "results/bacdive_ai_predictions.csv",
+        "results/report.html",
+        "results/summary.json",
 
 
 rule prodigal:
     input:
-        genome=lambda w: next((p for p, gid in zip(GENOMES, GENOME_IDS) if gid == w.genome_id), None)
+        genome=lambda w: SAMPLES[w.sample]["genome_path"],
     output:
-        proteins=os.path.join(PROTEIN_DIR, "{genome_id}.faa")
+        proteins="results/proteins/{sample}.faa",
+    params:
+        mode=PRODIGAL_MODE,
     log:
-        os.path.join("logs", "prodigal", "{genome_id}.log")
+        "logs/prodigal/{sample}.log",
     benchmark:
-        os.path.join("benchmarks", "prodigal", "{genome_id}.txt")
+        "benchmarks/prodigal/{sample}.tsv"
     conda:
         "envs/prodigal.yaml"
     shell:
-        """
-        mkdir -p {PROTEIN_DIR} logs/prodigal
-        {{
-            prodigal -i {input.genome} -a {output.proteins} -p meta -q;
-            sed -i 's/\\*//g' {output.proteins};
-        }} > {log} 2>&1
-        """ 
+        "prodigal -i {input.genome:q} -a {output.proteins:q} -p {params.mode:q} -q > {log:q} 2>&1 && sed -i 's/\\*//g' {output.proteins:q}"
 
 
-# Rule to run InterProScan on a genome file
 rule interproscan:
     input:
-        proteins=os.path.join(PROTEIN_DIR, "{genome_id}.faa")
+        proteins=protein_input,
     output:
-        tsv=os.path.join(INTERPRO_DIR, "{genome_id}.faa.tsv")
+        tsv="results/interpro/{sample}.tsv",
+    params:
+        executable=config.get("interproscan", "interproscan.sh"),
     threads: 4
+    resources:
+        mem_mb=8192,
+        runtime=120,
     log:
-        os.path.join("logs", "interproscan", "{genome_id}.log")
+        "logs/interproscan/{sample}.log",
     benchmark:
-        os.path.join("benchmarks", "interproscan", "{genome_id}.txt")
+        "benchmarks/interproscan/{sample}.tsv"
     shell:
-        """
-        mkdir -p logs/interproscan
-        interproscan.sh -i {input.proteins} -f tsv -d {INTERPRO_DIR} \
-                        -appl Pfam -cpu {threads} > {log} 2>&1
-        """
+        "{params.executable:q} -i {input.proteins:q} -f tsv -o {output.tsv:q} -appl Pfam -cpu {threads} > {log:q} 2>&1"
 
-# Rule to predict traits for a single genome
+
 rule predict_traits:
     input:
-        tsv = os.path.join(INTERPRO_DIR, "{genome_id}.faa.tsv")
+        tsv=annotation_input,
+        models=MODELS,
+        sources=PYTHON_SOURCES,
     output:
-        json = os.path.join(RESULTS_DIR, "predictions", "{genome_id}.json")
+        json="results/predictions/{sample}.json",
+    params:
+        script=str(ROOT / "predict.py"),
+        model_dir=config.get("model_dir", "models"),
+        evalue=EVALUE,
+        traits=SELECTED,
     log:
-        os.path.join("logs", "predict", "{genome_id}.log")
+        "logs/predict/{sample}.log",
     benchmark:
-        os.path.join("benchmarks", "predict_traits", "{genome_id}.txt")
+        "benchmarks/predict_traits/{sample}.tsv"
+    conda:
+        "envs/prediction.yaml"
     shell:
-        """
-        mkdir -p {RESULTS_DIR}/predictions logs/predict
-        python predict.py all {input.tsv} > {output.json} 2> {log}
-        """
+        "python {params.script:q} all {input.tsv:q} --model-dir {params.model_dir:q} --sample-id {wildcards.sample:q} --evalue {params.evalue} --output {output.json:q} --traits {params.traits:q} > {log:q} 2>&1"
 
-# Rule to aggregate all prediction results
+
 rule aggregate_results:
     input:
-        predictions = expand(os.path.join(RESULTS_DIR, "predictions", "{genome_id}.json"), genome_id=GENOME_IDS)
+        predictions=expand("results/predictions/{sample}.json", sample=sorted(SAMPLES)),
+        samples=SAMPLES_FILE,
+        metadata=[REFERENCE] if REFERENCE else [],
+        sources=PYTHON_SOURCES,
     output:
-        csv = os.path.join(RESULTS_DIR, "bacdive_ai_predictions.csv")
+        csv="results/bacdive_ai_predictions.csv",
+    params:
+        root=str(ROOT),
+        traits=SELECTED,
     log:
-        os.path.join("logs", "aggregate_results.log")
-    benchmark:
-        os.path.join("benchmarks", "aggregate_results.txt")
+        "logs/aggregate_results.log",
+    conda:
+        "envs/report.yaml"
     script:
         "scripts/aggregate_results.py"
 
 
+rule report:
+    input:
+        csv="results/bacdive_ai_predictions.csv",
+        sources=PYTHON_SOURCES,
+    output:
+        html="results/report.html",
+        summary="results/summary.json",
+    params:
+        root=str(ROOT),
+    log:
+        "logs/report.log",
+    conda:
+        "envs/report.yaml"
+    script:
+        "scripts/report.py"

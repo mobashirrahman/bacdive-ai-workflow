@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bacdive-ai-workflow"
+version = "1.0.0"
+description = "Reproducible Snakemake workflow for published BacDive-AI phenotype models"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Md Mobashir Rahman"}]
+dependencies = ["numpy==1.26.4", "scipy==1.12.0", "scikit-learn==1.4.0", "joblib==1.3.2", "threadpoolctl==3.4.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff==0.11.13", "build>=1,<2", "PyYAML==6.0.2"]
+workflow = ["snakemake==9.13.7"]
+
+[project.scripts]
+bacdive-predict = "bacdive_workflow.cli:main"
+bacdive-aggregate = "bacdive_workflow.aggregation:main"
+bacdive-report = "bacdive_workflow.report:main"
+bacdive-models = "bacdive_workflow.models:main"
+bacdive-batch = "bacdive_workflow.batch:main"
+
+[project.urls]
+Repository = "https://github.com/mobashirrahman/bacdive-ai-workflow"
+Issues = "https://github.com/mobashirrahman/bacdive-ai-workflow/issues"
+
+[tool.setuptools]
+packages = ["bacdive_workflow"]
+
+[tool.setuptools.package-data]
+bacdive_workflow = ["model_manifest.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# Snakemake injects the `snakemake` object into script adapters at runtime.
+"scripts/aggregate_results.py" = ["F821"]
+"scripts/report.py" = ["F821"]
+# Bootstrap adds the repository root to sys.path before importing the package.
+"scripts/reproduce_case_study.py" = ["E402"]

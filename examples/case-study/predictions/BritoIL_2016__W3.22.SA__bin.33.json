@@ -1,0 +1,39 @@
+{
+  "genome_file": "BritoIL_2016__W3.22.SA__bin.33.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 86.22
+    },
+    "Gram-positive": {
+      "prediction": false,
+      "confidence": 82.08
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 99.5
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 84.75
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 50.27
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 95.85
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 98.7
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 90.82
+    }
+  },
+  "sample_id": "BritoIL_2016__W3.22.SA__bin.33",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

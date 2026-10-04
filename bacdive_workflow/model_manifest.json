@@ -1,0 +1,41 @@
+{
+  "release": "v1.1",
+  "doi": "10.5281/zenodo.13757323",
+  "license": "GPL-3.0-or-later",
+  "url": "https://zenodo.org/records/13757323/files/Archiv.zip?download=1",
+  "archive_sha256": "2d4b29a262b6813f88a31b838b050d89de6b5aa7ef24955ce04003e0333ebd11",
+  "models": {
+    "acidophile_data.p": {
+      "sha256": "e49ef48b6ab1077bb159714b954999b2e61b92aea3a0edb02e28ef9a3660a1f1",
+      "bytes": 33609728
+    },
+    "gram-positive_data.p": {
+      "sha256": "288e5d618ffb275fb789ba4c0c25f9b85b644948473017302d69335e3a0b5af9",
+      "bytes": 64382242
+    },
+    "spore-forming_data.p": {
+      "sha256": "6d36821fca9f1573fcea2594f0f774708215758e6e2682bf3b5eebe0ba61f4f1",
+      "bytes": 44081670
+    },
+    "aerobic_data.p": {
+      "sha256": "495dfa48d91983fdc3456b970424f0509a130e31e9bd49e87deab322d8bb6b95",
+      "bytes": 106496466
+    },
+    "anaerobic_data.p": {
+      "sha256": "159c1abe9c63f2ec2054125f0fd4300da61c388f468dd3fea9b76b0c9b6197cc",
+      "bytes": 108239052
+    },
+    "thermophile_data.p": {
+      "sha256": "b2c9dab302cbc262de09b9e533e48431940d10ff65d88e6f2f3bc5668bf4bb95",
+      "bytes": 177954383
+    },
+    "psychrophile_data.p": {
+      "sha256": "6806852fcee3ffa02ccfd19720cf24484ead18bb3524e1f3fa09bf7cd9ab9ce3",
+      "bytes": 176822640
+    },
+    "motile2+_data.p": {
+      "sha256": "82b198e8b1b7af03201614891291a5d84065445ebcf212027a265cc4d6458bd7",
+      "bytes": 30130907
+    }
+  }
+}

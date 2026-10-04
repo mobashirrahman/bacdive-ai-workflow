@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned prediction and workflow dependencies
+        run: python -m pip install -e '.[dev,workflow]'
+      - name: Check code and regression cases
+        run: |
+          ruff check bacdive_workflow tests scripts predict.py
+          ruff format --check bacdive_workflow tests scripts predict.py
+          pytest -q
+      - name: Verify models and run the real annotation example
+        run: |
+          python -m bacdive_workflow.models --archive Archiv.zip --model-dir models
+          snakemake --cores 2 --printshellcmds
+          python scripts/check_example.py results/predictions/1120941.3.json
+      - name: Reproduce published case study
+        run: python scripts/reproduce_case_study.py --check
+      - name: Verify published runtime table
+        run: python scripts/build_runtime_table.py --check
+      - uses: actions/upload-artifact@v4
+        with:
+          name: example-results
+          path: |
+            results/bacdive_ai_predictions.csv
+            results/report.html
+            results/summary.json

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "Cite this workflow and the BacDive-AI methods paper when using this project."
+title: "BacDive-AI workflow: reproducible bacterial phenotype prediction"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Rahman
+    given-names: Md Mobashir
+repository-code: "https://github.com/mobashirrahman/bacdive-ai-workflow"
+license: GPL-3.0-or-later
+references:
+  - type: article
+    title: "Predicting bacterial phenotypic traits through improved machine learning using high-quality, curated datasets"
+    authors:
+      - family-names: Koblitz
+        given-names: Julia
+      - family-names: Reimer
+        given-names: Lorenz Christian
+      - family-names: Pukall
+        given-names: Rüdiger
+      - family-names: Overmann
+        given-names: Jörg
+    doi: 10.1038/s42003-025-08313-3
+    year: 2025
+    journal: Communications Biology
+    volume: '8'

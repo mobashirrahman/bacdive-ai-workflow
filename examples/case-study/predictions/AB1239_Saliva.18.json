@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1239_Saliva.18.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 94.26
+    },
+    "Gram-positive": {
+      "prediction": true,
+      "confidence": 78.92
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 90.43
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 76.83
+    },
+    "Anaerobic": {
+      "prediction": false,
+      "confidence": 61.55
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 96.53
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 97.03
+    },
+    "Flagellated motility": {
+      "prediction": false,
+      "confidence": 92.25
+    }
+  },
+  "sample_id": "AB1239_Saliva.18",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}

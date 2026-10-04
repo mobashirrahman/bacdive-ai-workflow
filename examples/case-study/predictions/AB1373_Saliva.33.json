@@ -1,0 +1,39 @@
+{
+  "genome_file": "AB1373_Saliva.33.faa.tsv",
+  "predictions": {
+    "Acidophilic": {
+      "prediction": false,
+      "confidence": 96.0
+    },
+    "Gram-positive": {
+      "prediction": true,
+      "confidence": 56.36
+    },
+    "Spore-forming": {
+      "prediction": false,
+      "confidence": 96.79
+    },
+    "Aerobic": {
+      "prediction": false,
+      "confidence": 99.04
+    },
+    "Anaerobic": {
+      "prediction": true,
+      "confidence": 93.4
+    },
+    "Thermophilic": {
+      "prediction": false,
+      "confidence": 96.76
+    },
+    "Psychrophilic": {
+      "prediction": false,
+      "confidence": 99.33
+    },
+    "Flagellated motility": {
+      "prediction": true,
+      "confidence": 58.44
+    }
+  },
+  "sample_id": "AB1373_Saliva.33",
+  "snapshot_origin": "Existing 2025 run; predictions unchanged, identity normalized for metadata joining."
+}
