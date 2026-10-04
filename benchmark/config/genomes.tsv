@@ -1,2 +1,325 @@
-genome_id	bacdive_id	set	genus_unseen	phylum	family	genus	species	type_strain	assembly_level	n_contigs	genome_bp	harvest_date
-PLACEHOLDER_GCA_000000000.0	0	seen	False	PLACEHOLDER	PLACEHOLDER	PLACEHOLDER	Placeholder species	False	Complete Genome	1	1000000	2026-10-04
+genome_id	bacdive_id	set	genus_unseen	phylum	family	genus	species	type_strain	assembly_level	n_contigs	genome_bp	harvest_date	label_aerobic	label_anaerobic	label_gram-positive	label_motile2+	label_spore-forming	label_thermophile
+GCA_008000815.1	131450	seen	False	Acidobacteria	Acidobacteriaceae	Terriglobus	Terriglobus albidus	True	Complete Genome	1	6405582	2026-10-04						0
+GCA_015277775.1	24778	seen	False	Acidobacteria	Bryobacteraceae	Paludibaculum	Paludibaculum fermentans	True	Complete Genome	2	9532094	2026-10-04	0	0				0
+GCA_001618865.1	140275	seen	False	Acidobacteria	Vicinamibacteraceae	Luteitalea	Luteitalea pratensis	True	Complete Genome	1	7480314	2026-10-04	1	0	0		0	0
+GCA_002407065.1	140077	seen	False	Actinobacteria	Dermabacteraceae	Brachybacterium	Brachybacterium ginsengisoli	True	Complete Genome	1	3953253	2026-10-04	1	0				0
+GCA_004924335.1	8291	seen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium salmoniphilum	True	Complete Genome	1	4776697	2026-10-04						0
+GCA_001263395.1	1749	seen	False	Actinobacteria	Bifidobacteriaceae	Bifidobacterium	Bifidobacterium actinocoloniiforme	True	Complete Genome	1	1830060	2026-10-04	0	1				0
+GCA_010731115.1	8548	seen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium phocaicum	True	Complete Genome	1	5853197	2026-10-04	1	0		0		0
+GCA_001305675.1	141149	seen	False	Actinobacteria	Gordoniaceae	Gordonia	Gordonia phthalatica	True	Complete Genome	1	4428727	2026-10-04	1	0	1	0	0	0
+GCA_001941565.1	3204	seen	False	Actinobacteria	Corynebacteriaceae	Corynebacterium	Corynebacterium phocae	True	Complete Genome	2	2791883	2026-10-04	0	0	1	0		0
+GCA_001482365.1	7662	seen	False	Actinobacteria	Micrococcaceae	Kocuria	Kocuria flava	True	Complete Genome	5	3638342	2026-10-04	1	0	1	0		0
+GCA_900637725.1	12653	seen	False	Actinobacteria	Propionibacteriaceae	Arachnia	Arachnia propionica	True	Complete Genome	1	3402349	2026-10-04	0	0	1	0		0
+GCA_001542625.2	15261	seen	False	Actinobacteria	Streptomycetaceae	Streptomyces	Streptomyces griseochromogenes	True	Complete Genome	1	10764674	2026-10-04						0
+GCA_015160875.1	15090	seen	False	Actinobacteria	Streptomycetaceae	Streptomyces	Streptomyces chromofuscus	True	Complete Genome	1	7483282	2026-10-04					1	0
+GCA_004208635.1	158382	seen	False	Actinobacteria	Microbacteriaceae	Leucobacter	Leucobacter triazinivorans	True	Complete Genome	1	3478815	2026-10-04			1	0	0	0
+GCA_010729485.1	8470	seen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium hiberniae	True	Complete Genome	1	4396654	2026-10-04				0		0
+GCA_900187215.1	3162	seen	False	Actinobacteria	Corynebacteriaceae	Corynebacterium	Corynebacterium imitans	True	Complete Genome	1	2565606	2026-10-04	0	0	1	0		0
+GCA_904831005.1	7419	seen	False	Actinobacteria	Microbacteriaceae	Microbacterium	Microbacterium hydrocarbonoxydans	True	Complete Genome	1	3724963	2026-10-04	1	0	1		0	0
+GCA_010728525.1	161258	seen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium shottsii	True	Complete Genome	1	5973149	2026-10-04						0
+GCA_000310065.1	12634	seen	False	Actinobacteria	Propionibacteriaceae	Acidipropionibacterium	Acidipropionibacterium acidipropionici	False	Complete Genome	1	3656170	2026-10-04	0	0	1	0		0
+GCA_010725725.1	8468	seen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium pulveris	True	Complete Genome	1	5484749	2026-10-04	1	0	1	0		0
+GCA_003258605.2	158494	seen	False	Actinomycetota	Streptomycetaceae	Peterkaempfera	Peterkaempfera bronchialis	True	Complete Genome	1	7090212	2026-10-04	1	0	1	0		0
+GCA_000025605.1	524	seen	False	Aquificae	Aquificaceae	Thermocrinis	Thermocrinis albus	True	Complete Genome	1	1500577	2026-10-04	0	0				1
+GCA_000191045.1	17641	seen	False	Aquificae	Desulfurobacteriaceae	Desulfurobacterium	Desulfurobacterium thermolithotrophum	True	Complete Genome	1	1541968	2026-10-04	0	1				1
+GCA_000512735.1	523	seen	False	Aquificae	Aquificaceae	Thermocrinis	Thermocrinis ruber	True	Complete Genome	1	1521037	2026-10-04						1
+GCA_000233715.3	11825	seen	False	Bacillota	Peptococcaceae	Desulfoscipio	Desulfoscipio gibsoniae	True	Complete Genome	1	4855529	2026-10-04	0	1				0
+GCA_004006475.1	1846	seen	False	Bacillota	Bacillaceae	Peribacillus	Peribacillus frigoritolerans	True	Complete Genome	1	5475560	2026-10-04	1	0	1			0
+GCA_014131695.1	2653	seen	False	Bacillota	Coprobacillaceae	Thomasclavelia	Thomasclavelia ramosa	True	Complete Genome	1	3247604	2026-10-04	0	1				0
+GCA_900187125.1	14126	seen	False	Bacteroidetes	Sphingobacteriaceae	Sphingobacterium	Sphingobacterium mizutaii	True	Complete Genome	1	4653048	2026-10-04	1	0		0		0
+GCA_006159205.1	158772	seen	False	Bacteroidetes	Flavobacteriaceae	Antarcticibacterium	Antarcticibacterium flavum	True	Complete Genome	1	4353683	2026-10-04	1	0	0			0
+GCA_003860565.1	5504	seen	False	Bacteroidetes	Weeksellaceae	Cloacibacterium	Cloacibacterium normanense	True	Complete Genome	1	2759562	2026-10-04	1	0	0	0	0	0
+GCA_001644645.1	140505	seen	False	Bacteroidetes	Chitinophagaceae	Flavisolibacter	Flavisolibacter tropicus	True	Complete Genome	1	5940863	2026-10-04	1	0	0	0		0
+GCA_004359195.1	164701	seen	False	Bacteroidetes	Weeksellaceae	Chryseobacterium	Chryseobacterium salivictor	True	Complete Genome	1	3139453	2026-10-04	1	0	0	0		0
+GCA_020310005.1	5642	seen	False	Bacteroidetes	Flavobacteriaceae	Salegentibacter	Salegentibacter mishustinae	True	Complete Genome	1	3807780	2026-10-04						0
+GCA_001831475.1	133395	seen	False	Bacteroidetes	Flavobacteriaceae	Flavobacterium	Flavobacterium crassostreae	True	Complete Genome	1	3027315	2026-10-04	1	0	0	0		0
+GCA_000212915.1	1613	seen	False	Bacteroidetes	Bacteroidaceae	Bacteroides	Bacteroides coprosuis	True	Chromosome	2	2991798	2026-10-04	0	1	0	0	0	0
+GCA_002022125.1	157086	seen	False	Bacteroidetes	Weeksellaceae	Elizabethkingia	Elizabethkingia ursingii	True	Complete Genome	1	4216720	2026-10-04	1	0		0		0
+GCA_001886815.1	18090	seen	False	Calditrichaeota	Calditrichaceae	Caldithrix	Caldithrix abyssi	True	Complete Genome	1	4978541	2026-10-04	0	1				1
+GCA_902498835.1	158183	seen	False	Chlamydiae	Chlamydiaceae	Chlamydia	Chlamydia avium	True	Complete Genome	2	1048279	2026-10-04						0
+GCA_001747405.1	2396	seen	False	Chlorobi	Chlorobiaceae	Chlorobaculum	Chlorobaculum limnaeum	True	Complete Genome	1	2797276	2026-10-04	0	1		0		0
+GCA_000020465.1	2403	seen	False	Chlorobi	Chlorobiaceae	Chlorobium	Chlorobium limicola	True	Complete Genome	1	2763181	2026-10-04	0	1				0
+GCA_000012485.1	2406	seen	False	Chlorobi	Chlorobiaceae	Chlorobium	Chlorobium luteolum	True	Complete Genome	1	2364842	2026-10-04	0	1	1	0		0
+GCA_000021945.1	2421	seen	False	Chloroflexi	Chloroflexaceae	Chloroflexus	Chloroflexus aggregans	True	Complete Genome	1	4684931	2026-10-04	0	1				1
+GCA_000017805.1	2416	seen	False	Chloroflexi	Roseiflexaceae	Roseiflexus	Roseiflexus castenholzii	True	Complete Genome	1	5723298	2026-10-04	0	1	0			1
+GCA_001953175.1	140462	seen	False	Chloroflexi	Dehalococcoidaceae	Dehalogenimonas	Dehalogenimonas formicexedens	True	Complete Genome	1	2092789	2026-10-04	0	1	0	0	0	
+GCA_003201675.2	16646	seen	False	Crenarchaeota	Sulfolobaceae	Metallosphaera	Metallosphaera hakonensis	True	Complete Genome	1	2544115	2026-10-04						1
+GCA_001481685.1	4189	seen	False	Crenarchaeota	Desulfurococcaceae	Ignicoccus	Ignicoccus islandicus	True	Complete Genome	1	1394664	2026-10-04	0	1	0	1		1
+GCA_000016385.1	17028	seen	False	Crenarchaeota	Thermoproteaceae	Pyrobaculum	Pyrobaculum arsenaticum	True	Complete Genome	1	2121076	2026-10-04	0	1				1
+GCA_019175325.1	16654	seen	False	Crenarchaeota	Sulfolobaceae	Saccharolobus	Saccharolobus shibatae	True	Complete Genome	2	2778607	2026-10-04						1
+GCA_000317495.1	140189	seen	False	Cyanobacteria	Gomontiellaceae	Crinalium	Crinalium epipsammum	False	Complete Genome	9	5620407	2026-10-04						0
+GCA_000009705.1	158218	seen	False	Cyanobacteria	Nostocaceae	Nostoc	Nostoc sp.	False	Complete Genome	7	7211789	2026-10-04						0
+GCA_004087915.1	3840	seen	False	Deferribacteres	Deferribacteraceae	Geovibrio	Geovibrio thiophilus	True	Complete Genome	1	2997552	2026-10-04	0	1				0
+GCA_000183405.1	3846	seen	False	Deferribacteres	Deferribacteraceae	Calditerrivibrio	Calditerrivibrio nitroreducens	True	Complete Genome	2	2216552	2026-10-04	0	1	0		0	1
+GCA_000025725.1	3838	seen	False	Deferribacteres	Deferribacteraceae	Denitrovibrio	Denitrovibrio acetiphilus	True	Complete Genome	1	3222077	2026-10-04	0	1				0
+GCA_003173015.1	159760	seen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus irradiatisoli	True	Complete Genome	1	3052043	2026-10-04	1	0	0	0		0
+GCA_000317835.1	3887	seen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus peraridilitoris	True	Complete Genome	3	4513714	2026-10-04	0	0	0	0	0	0
+GCA_000186385.1	3874	seen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus maricopensis	True	Complete Genome	1	3498530	2026-10-04						0
+GCA_000021645.1	4240	seen	False	Dictyoglomi	Dictyoglomaceae	Dictyoglomus	Dictyoglomus turgidum	True	Complete Genome	1	1855560	2026-10-04	0	1	0			1
+GCA_001027545.1	132651	seen	False	Elusimicrobia	Endomicrobiaceae	Endomicrobium	Endomicrobium proavitum	False	Complete Genome	1	1588979	2026-10-04						0
+GCA_000011085.1	5904	seen	False	Euryarchaeota	Haloarculaceae	Haloarcula	Haloarcula marismortui	True	Complete Genome	9	4274642	2026-10-04						0
+GCA_000025325.1	5883	seen	False	Euryarchaeota	Natrialbaceae	Haloterrigena	Haloterrigena turkmenica	True	Complete Genome	7	5440782	2026-10-04			0	0		0
+GCA_000214725.1	24155	seen	False	Euryarchaeota	Methanobacteriaceae	Methanobacterium	Methanobacterium paludis	True	Complete Genome	1	2546541	2026-10-04	0	1				0
+GCA_002945325.1	6989	seen	False	Euryarchaeota	Methanococcaceae	Methanococcus	Methanococcus maripaludis	True	Complete Genome	1	1714918	2026-10-04	0	1				0
+GCA_001563245.1	6977	seen	False	Euryarchaeota	Methanobacteriaceae	Methanobrevibacter	Methanobrevibacter olleyae	True	Complete Genome	1	2201192	2026-10-04	0	1				0
+GCA_004359375.1	164491	seen	False	Firmicutes	Lactobacillaceae	Acetilactobacillus	Acetilactobacillus jinshanensis	True	Complete Genome	1	1616430	2026-10-04	0	0	1	0	0	0
+GCA_007641255.1	17198	seen	False	Firmicutes	Sporomusaceae	Sporomusa	Sporomusa termitida	True	Complete Genome	2	5316008	2026-10-04	0	1				0
+GCA_009496975.1	6519	seen	False	Firmicutes	Lactobacillaceae	Fructilactobacillus	Fructilactobacillus sanfranciscensis	True	Complete Genome	1	1310991	2026-10-04	0	0	1	0		0
+GCA_900492555.1	6564	seen	False	Firmicutes	Lactobacillaceae	Lacticaseibacillus	Lacticaseibacillus zeae	True	Complete Genome	2	3073411	2026-10-04	0	0	1	0		0
+GCA_002814135.1	14787	seen	False	Firmicutes	Streptococcaceae	Streptococcus	Streptococcus uberis	True	Complete Genome	1	1863842	2026-10-04	0	0	1	0		0
+GCA_006704205.1	158260	seen	False	Firmicutes	Bacillaceae	Cytobacillus	Cytobacillus ciccensis	True	Complete Genome	1	5207802	2026-10-04	1	0	1	1	1	0
+GCA_011299095.1	140571	seen	False	Firmicutes	Carnobacteriaceae	Jeotgalibaca	Jeotgalibaca porci	True	Complete Genome	2	2350884	2026-10-04	0	0	1		0	0
+GCA_000231405.3	11771	seen	False	Firmicutes	Peptococcaceae	Desulfitobacterium	Desulfitobacterium metallireducens	True	Complete Genome	1	3176073	2026-10-04	0	1				0
+GCA_015326545.1	14648	seen	False	Firmicutes	Staphylococcaceae	Mammaliicoccus	Mammaliicoccus fleurettii	True	Complete Genome	1	2508018	2026-10-04	1	0	1	0		0
+GCA_008369805.1	6422	seen	False	Firmicutes	Lactobacillaceae	Lentilactobacillus	Lentilactobacillus buchneri subsp. buchneri	True	Complete Genome	4	2583542	2026-10-04	0	0	1	0		0
+GCA_000188315.1	138212	seen	False	Firmicutes	Streptococcaceae	Streptococcus	Streptococcus dysgalactiae	False	Chromosome	2	2141837	2026-10-04	0	0	1	0		0
+GCA_003795125.1	5259	seen	False	Firmicutes	Enterococcaceae	Tetragenococcus	Tetragenococcus osmophilus	True	Complete Genome	3	2384293	2026-10-04	0	0	1	0	0	0
+GCA_001634285.1	560	seen	False	Firmicutes	Bacillaceae	Anoxybacillus	Anoxybacillus amylolyticus	True	Complete Genome	3	3158269	2026-10-04	0	0	1			1
+GCA_015140235.1	160202	seen	False	Firmicutes	Oscillospiraceae	Solibaculum	Solibaculum mannosilyticum	True	Complete Genome	1	2541474	2026-10-04						0
+GCA_001687585.2	11967	seen	False	Firmicutes	Caryophanaceae	Planococcus	Planococcus halocryophilus	True	Complete Genome	1	3424893	2026-10-04	1	0	1		0	0
+GCA_002688605.1	1290	seen	False	Firmicutes	Bacillaceae	Bacillus	Bacillus aryabhattai	True	Complete Genome	3	5254250	2026-10-04			1		1	0
+GCA_900187285.1	17176	seen	False	Firmicutes	Veillonellaceae	Veillonella	Veillonella rodentium	True	Complete Genome	1	2041290	2026-10-04	0	1				0
+GCA_000153625.1	5761	seen	False	Fusobacteria	Fusobacteriaceae	Fusobacterium	Fusobacterium nucleatum subsp. polymorphum	True	Chromosome	15	2441632	2026-10-04	0	1				0
+GCA_000024565.1	17869	seen	False	Fusobacteria	Leptotrichiaceae	Streptobacillus	Streptobacillus moniliformis	True	Complete Genome	2	1673280	2026-10-04	0	0				0
+GCA_000024405.1	17870	seen	False	Fusobacteria	Leptotrichiaceae	Sebaldella	Sebaldella termitidis	True	Complete Genome	3	4486650	2026-10-04	0	1				0
+GCA_000695095.2	131394	seen	False	Gemmatimonadetes	Gemmatimonadaceae	Gemmatimonas	Gemmatimonas phototrophica	True	Complete Genome	1	4716552	2026-10-04	0	0				0
+GCA_001017655.1	132503	seen	False	Kiritimatiellaeota	Kiritimatiellaceae	Kiritimatiella	Kiritimatiella glycovorans	True	Complete Genome	1	2949723	2026-10-04						0
+GCA_000020985.1	10537	seen	False	Nitrospirae	Nitrospiraceae	Thermodesulfovibrio	Thermodesulfovibrio yellowstonii	True	Complete Genome	1	2003803	2026-10-04	0	1				1
+GCA_020735445.1	12547	seen	False	Not assigned to order	Not assigned to family	Segatella	Segatella copri	True	Complete Genome	3	3551614	2026-10-04	0	1	0	0	0	0
+GCA_900637655.1	12550	seen	False	Not assigned to order	Not assigned to family	Segatella	Segatella oris	True	Complete Genome	1	3168212	2026-10-04	0	1				0
+GCA_020735565.1	12528	seen	False	Not assigned to order	Not assigned to family	Hoylesella	Hoylesella buccalis	True	Complete Genome	1	3308411	2026-10-04	0	1				0
+GCA_007753265.1	160513	seen	False	Planctomycetes	Lacipirellulaceae	Botrimarina	Botrimarina mediterranea	True	Chromosome	2	5871207	2026-10-04			0			0
+GCA_007751035.1	166384	seen	False	Planctomycetes	Pirellulaceae	Lignipirellula	Lignipirellula cremea	True	Complete Genome	1	9565229	2026-10-04	1	0	0			0
+GCA_000025185.1	11937	seen	False	Planctomycetes	Pirellulaceae	Pirellula	Pirellula staleyi	True	Complete Genome	1	6196199	2026-10-04						0
+GCA_007751715.1	166405	seen	False	Planctomycetes	Pirellulaceae	Rosistilla	Rosistilla oblonga	True	Complete Genome	1	7250512	2026-10-04	1	0	0			0
+GCA_014883875.1	13180	seen	False	Proteobacteria	Pseudomonadaceae	Pseudomonas	Pseudomonas taiwanensis	True	Complete Genome	1	5851681	2026-10-04	1	0	0		0	0
+GCA_900103875.1	23213	seen	False	Proteobacteria	Pseudomonadaceae	Pseudomonas	Pseudomonas arsenicoxydans	True	Chromosome	1	6502978	2026-10-04	1	0				0
+GCA_008728195.1	13773	seen	False	Proteobacteria	Rhodobacteraceae	Roseovarius	Roseovarius indicus	True	Complete Genome	5	6173065	2026-10-04						0
+GCA_008118345.1	137575	seen	False	Proteobacteria	Acetobacteraceae	Gluconobacter	Gluconobacter thailandicus	True	Complete Genome	3	3649313	2026-10-04	1	0	0			0
+GCA_001931535.1	130822	seen	False	Proteobacteria	Polyangiaceae	Minicystis	Minicystis rosea	True	Complete Genome	1	16040666	2026-10-04						0
+GCA_003722335.1	131555	seen	False	Proteobacteria	Caulobacteraceae	Caulobacter	Caulobacter flavus	True	Complete Genome	1	5659202	2026-10-04						0
+GCA_016446285.1	133072	seen	False	Proteobacteria	Desulfobulbaceae	Desulfobulbus	Desulfobulbus oligotrophicus	True	Complete Genome	1	3102012	2026-10-04	0	1	0	1	0	0
+GCA_005671395.1	166138	seen	False	Proteobacteria	Enterobacteriaceae	Jejubacter	Jejubacter calystegiae	True	Complete Genome	1	5182800	2026-10-04	0	0	0	1		0
+GCA_000816305.1	133526	seen	False	Proteobacteria	Campylobacteraceae	Campylobacter	Campylobacter subantarcticus	True	Complete Genome	1	1852995	2026-10-04	0	0	0			
+GCA_000511385.1	24493	seen	False	Proteobacteria	Rhodobacteraceae	Phaeobacter	Phaeobacter gallaeciensis	True	Complete Genome	8	4540155	2026-10-04			0			0
+GCA_011764585.1	159994	seen	False	Proteobacteria	Sulfuricellaceae	Sulfurimicrobium	Sulfurimicrobium lacus	True	Complete Genome	1	3826324	2026-10-04						0
+GCA_002812485.1	132585	seen	False	Proteobacteria	Pectobacteriaceae	Dickeya	Dickeya fangzhongdai	True	Complete Genome	2	5032447	2026-10-04			0			0
+GCA_000018285.1	139497	seen	False	Proteobacteria	Shewanellaceae	Shewanella	Shewanella pealeana	True	Complete Genome	1	5174581	2026-10-04	0	0	0			0
+GCA_011455695.1	11722	seen	False	Proteobacteria	Pasteurellaceae	Mannheimia	Mannheimia granulomatis	True	Complete Genome	1	2278480	2026-10-04			0	0		0
+GCA_000402035.1	159714	seen	False	Proteobacteria	Burkholderiaceae	Caballeronia	Caballeronia insecticola	True	Complete Genome	5	6964487	2026-10-04	1	0	0	1	0	0
+GCA_001831495.1	140539	seen	False	Proteobacteria	Colwelliaceae	Thalassotalea	Thalassotalea crassostreae	True	Complete Genome	1	3861670	2026-10-04	1	0	0	0		0
+GCA_000349975.1	6098	seen	False	Proteobacteria	Helicobacteraceae	Helicobacter	Helicobacter cinaedi	True	Complete Genome	1	2240130	2026-10-04	0	0	0			0
+GCA_900187205.1	2057	seen	False	Proteobacteria	Burkholderiaceae	Pandoraea	Pandoraea sputorum	True	Complete Genome	1	5743123	2026-10-04	1	0	0		0	0
+GCA_002736065.1	13117	seen	False	Proteobacteria	Pseudomonadaceae	Pseudomonas	Pseudomonas mosselii	True	Complete Genome	1	5742165	2026-10-04	1	0	0			0
+GCA_000331735.1	10096	seen	False	Proteobacteria	Myxococcaceae	Myxococcus	Myxococcus stipitatus	True	Complete Genome	1	10350586	2026-10-04						0
+GCA_001305575.3	133124	seen	False	Proteobacteria	Beggiatoaceae	Beggiatoa	Beggiatoa leptomitoformis	True	Complete Genome	1	4265317	2026-10-04			0			0
+GCA_000959725.1	1911	seen	False	Proteobacteria	Burkholderiaceae	Burkholderia	Burkholderia gladioli	True	Complete Genome	5	8899459	2026-10-04	1	0	0			0
+GCA_004063735.1	13693	seen	False	Proteobacteria	Rhodobacteraceae	Paracoccus	Paracoccus denitrificans	True	Complete Genome	3	5242327	2026-10-04	1	0	0			0
+GCA_016889385.1	11708	seen	False	Proteobacteria	Pasteurellaceae	Haemophilus	Haemophilus parahaemolyticus	True	Complete Genome	2	2093459	2026-10-04	1	0	0	0		0
+GCA_013488225.1	13559	seen	False	Proteobacteria	Rhizobiaceae	Ensifer	Ensifer mexicanus	True	Complete Genome	4	7141863	2026-10-04						0
+GCA_011398155.1	160434	seen	False	Proteobacteria	Piscirickettsiaceae	Thiosulfativibrio	Thiosulfativibrio zosterae	True	Complete Genome	1	2645427	2026-10-04						0
+GCA_013372125.1	2128	seen	False	Proteobacteria	Campylobacteraceae	Campylobacter	Campylobacter curvus	True	Complete Genome	1	1974918	2026-10-04	0	0	0			0
+GCA_003359295.2	8146	seen	False	Proteobacteria	Moraxellaceae	Acinetobacter	Acinetobacter pittii	True	Complete Genome	5	3944992	2026-10-04	1	0	0	0		0
+GCA_000242255.3	17460	seen	False	Proteobacteria	Rhodanobacteraceae	Frateuria	Frateuria aurantia	True	Complete Genome	1	3603458	2026-10-04						0
+GCA_900635475.1	4971	seen	False	Proteobacteria	Enterobacteriaceae	Kluyvera	Kluyvera intermedia	True	Complete Genome	1	4739056	2026-10-04	0	0	0			0
+GCA_007795095.1	162196	seen	False	Proteobacteria	Lysobacteraceae	Luteimonas	Luteimonas granuli	True	Complete Genome	1	2917404	2026-10-04	1	0	0		0	0
+GCA_003345255.1	159755	seen	False	Proteobacteria	Zoogloeaceae	Thauera	Thauera hydrothermalis	True	Complete Genome	1	3059321	2026-10-04			0		0	
+GCA_016593255.1	162622	seen	False	Pseudomonadota	Hydrogenimonadaceae	Hydrogenimonas	Hydrogenimonas urashimensis	True	Complete Genome	1	2297889	2026-10-04						1
+GCA_000024845.1	17792	seen	False	Rhodothermaeota	Rhodothermaceae	Rhodothermus	Rhodothermus marinus	True	Complete Genome	2	3386737	2026-10-04						1
+GCA_000755145.1	133660	seen	False	Spirochaetes	Spirochaetaceae	Treponema	Treponema putidum	True	Complete Genome	2	2800562	2026-10-04	0	1				
+GCA_000008185.1	14344	seen	False	Spirochaetes	Treponemataceae	Treponema	Treponema denticola	True	Complete Genome	1	2843201	2026-10-04	0	1				0
+GCA_001676785.2	152395	seen	False	Spirochaetes	Brachyspiraceae	Brachyspira	Brachyspira hyodysenteriae	True	Complete Genome	2	3074045	2026-10-04	0	1				0
+GCA_015219785.1	14349	seen	False	Spirochaetes	Treponemataceae	Treponema	Treponema pedis	True	Complete Genome	1	3077465	2026-10-04	0	1	0			0
+GCA_000219725.1	14324	seen	False	Spirochaetota	Breznakiellaceae	Gracilinema	Gracilinema caldarium	True	Complete Genome	1	3239340	2026-10-04	0	1	0		0	1
+GCA_001701045.1	23440	seen	False	Synergistetes	Synergistaceae	Cloacibacillus	Cloacibacillus porcorum	True	Complete Genome	1	3585187	2026-10-04	0	1	0	0	0	0
+GCA_000024905.1	17780	seen	False	Synergistetes	Synergistaceae	Thermanaerovibrio	Thermanaerovibrio acidaminovorans	True	Complete Genome	1	1848474	2026-10-04	0	1				1
+GCA_000237825.1	17781	seen	False	Synergistetes	Synergistaceae	Thermanaerovibrio	Thermanaerovibrio velox	True	Chromosome	2	1880838	2026-10-04	0	1				1
+GCA_003925935.1	8599	seen	False	Tenericutes	Metamycoplasmataceae	Mycoplasmopsis	Mycoplasmopsis californica	True	Complete Genome	1	805917	2026-10-04						0
+GCA_900660485.1	138491	seen	False	Tenericutes	Metamycoplasmataceae	Mycoplasma	Mycoplasma neurolyticum	True	Complete Genome	4	1040908	2026-10-04						0
+GCA_008728915.1	8604	seen	False	Tenericutes	Mycoplasmoidaceae	Mycoplasmoides	Mycoplasmoides gallisepticum	True	Complete Genome	1	963058	2026-10-04			0			0
+GCA_003363775.1	14377	seen	False	Tenericutes	Spiroplasmataceae	Spiroplasma	Spiroplasma alleghenense	True	Complete Genome	1	1336077	2026-10-04	0	0				0
+GCA_012317585.1	159186	seen	False	Thermodesulfobacteria	Thermodesulfobacteriaceae	Thermosulfurimonas	Thermosulfurimonas marina	True	Complete Genome	1	1763258	2026-10-04						1
+GCA_000734015.1	16891	seen	False	Thermodesulfobacteria	Thermodesulfobacteriaceae	Thermodesulfobacterium	Thermodesulfobacterium commune	True	Complete Genome	1	1764045	2026-10-04	0	1				1
+GCA_001548275.1	132490	seen	False	Thermodesulfobacteria	Thermodesulfobacteriaceae	Caldimicrobium	Caldimicrobium thiodismutans	True	Complete Genome	1	1814952	2026-10-04	0	1	0			1
+GCA_000024985.1	14090	seen	False	Thermomicrobia	Sphaerobacteraceae	Sphaerobacter	Sphaerobacter thermophilus	True	Complete Genome	2	3993764	2026-10-04	1	0	1		0	1
+GCA_000021685.1	16905	seen	False	Thermomicrobia	Thermomicrobiaceae	Thermomicrobium	Thermomicrobium roseum	True	Complete Genome	2	2920744	2026-10-04						1
+GCA_009936215.1	132416	seen	False	Thermotogae	Mesoaciditogaceae	Athalassotoga	Athalassotoga saccharophila	True	Complete Genome	3	2044999	2026-10-04	0	1	0		0	1
+GCA_001027025.1	131351	seen	False	Thermotogae	Kosmotogaceae	Kosmotoga	Kosmotoga pacifica	True	Complete Genome	1	2169170	2026-10-04	0	1				1
+GCA_000504105.1	17067	seen	False	Thermotogae	Thermotogaceae	Pseudothermotoga	Pseudothermotoga hypogea	True	Complete Genome	1	2165165	2026-10-04	0	1				1
+GCA_900097105.1	132956	seen	False	Verrucomicrobia	Akkermansiaceae	Akkermansia	Akkermansia glycaniphila	True	Complete Genome	1	3074078	2026-10-04	0	1	0	0		0
+GCA_003716935.1	17849	seen	False	Verrucomicrobia	Akkermansiaceae	Akkermansia	Akkermansia muciniphila	True	Complete Genome	1	2663833	2026-10-04	0	1	0	0		0
+GCA_000025905.1	17651	seen	False	Verrucomicrobia	Puniceicoccaceae	Coraliomargarita	Coraliomargarita akajimensis	True	Complete Genome	1	3750771	2026-10-04	1	0	0	0	0	0
+GCA_048629425.1	140	unseen	True	Acidobacteria	Acidobacteriaceae	Telmatobacter	Telmatobacter bradus	True	Complete Genome	2	5148745	2026-10-04	0		0			0
+GCA_000178975.2	22901	unseen	False	Acidobacteria	Acidobacteriaceae	Granulicella	Granulicella tundricola	True	Complete Genome	6	5503984	2026-10-04		0	0	0	0	0
+GCA_000265425.1	134	unseen	False	Acidobacteria	Acidobacteriaceae	Terriglobus	Terriglobus roseus	True	Complete Genome	1	5227858	2026-10-04				0		0
+GCA_027942015.1	16197	unseen	False	Actinobacteria	Streptomycetaceae	Streptomyces	Streptomyces sporoverrucosus	True	Complete Genome	5	8161592	2026-10-04					1	0
+GCA_027626975.1	16446	unseen	False	Actinobacteria	Streptomycetaceae	Streptomyces	Streptomyces nigrescens	True	Complete Genome	2	9534571	2026-10-04					1	0
+GCA_049103755.1	24733	unseen	True	Actinobacteria	Iamiaceae	Aquihabitans	Aquihabitans daechungensis	True	Chromosome	1	4162168	2026-10-04		0	1	0		0
+GCA_000197735.1	7602	unseen	False	Actinobacteria	Micrococcaceae	Glutamicibacter	Glutamicibacter arilaitensis	True	Complete Genome	3	3918192	2026-10-04	1	0	1	0		0
+GCA_900101785.1	12672	unseen	False	Actinobacteria	Propionibacteriaceae	Auraticoccus	Auraticoccus monumenti	True	Chromosome	1	4461788	2026-10-04		0	1	0	0	0
+GCA_028532485.1	17737	unseen	True	Actinobacteria	Iamiaceae	Iamia	Iamia majanohamensis	True	Complete Genome	1	4576919	2026-10-04		0	1	0	0	0
+GCA_022430545.2	8344	unseen	False	Actinobacteria	Mycobacteriaceae	Mycobacterium	Mycobacterium paraterrae	True	Complete Genome	1	5522624	2026-10-04		0	1			0
+GCA_000023865.1	13414	unseen	True	Actinobacteria	Nocardiaceae	Micropolyspora	Micropolyspora internatus	True	Complete Genome	1	4308349	2026-10-04		0				0
+GCA_000830005.1	16438	unseen	False	Actinobacteria	Streptomycetaceae	Streptomyces	Streptomyces vietnamensis	True	Complete Genome	2	9153777	2026-10-04		0	1		1	0
+GCA_025264685.1	7872	unseen	False	Actinobacteria	Micromonosporaceae	Dactylosporangium	Dactylosporangium roseum	True	Complete Genome	1	8220997	2026-10-04					1	0
+GCA_004777465.1	11131	unseen	False	Actinobacteria	Nocardioidaceae	Nocardioides	Nocardioides daphniae	True	Complete Genome	1	3558816	2026-10-04		0	1	0	0	0
+GCA_000231055.3	13433	unseen	False	Actinobacteria	Pseudonocardiaceae	Saccharomonospora	Saccharomonospora azurea	True	Chromosome	96	4763852	2026-10-04		0	1			0
+GCA_000214175.1	8593	unseen	False	Actinobacteria	Nocardiaceae	Hoyosella	Hoyosella subflava	True	Complete Genome	3	4863490	2026-10-04		0	1	0	0	0
+GCA_030408575.1	3158	unseen	False	Actinobacteria	Corynebacteriaceae	Corynebacterium	Corynebacterium auris	True	Complete Genome	1	2439611	2026-10-04	1	0	1	0	0	0
+GCA_030296575.1	22956	unseen	False	Actinobacteria	Promicromonosporaceae	Paraoerskovia	Paraoerskovia sediminicola	True	Complete Genome	2	3516604	2026-10-04		0	1	0	0	0
+GCA_025264725.1	7871	unseen	False	Actinobacteria	Micromonosporaceae	Dactylosporangium	Dactylosporangium matsuzakiense	True	Complete Genome	1	10604413	2026-10-04					1	0
+GCA_030408715.1	3183	unseen	False	Actinobacteria	Corynebacteriaceae	Corynebacterium	Corynebacterium confusum	True	Complete Genome	2	2485332	2026-10-04		0	1	0	0	0
+GCA_029625435.1	204	unseen	False	Actinobacteria	Actinomycetaceae	Arcanobacterium	Arcanobacterium canis	True	Complete Genome	1	1873758	2026-10-04	0		1	0	0	0
+GCA_009930795.1	7507	unseen	False	Actinobacteria	Microbacteriaceae	Marisediminicola	Marisediminicola antarctica	True	Complete Genome	1	3352609	2026-10-04		0	1		0	0
+GCA_003711105.1	7818	unseen	False	Actinobacteria	Micromonosporaceae	Actinoplanes	Actinoplanes teichomyceticus	True	Complete Genome	1	8287152	2026-10-04		0	1		1	0
+GCA_019285775.1	11053	unseen	True	Actinobacteria	Nocardiaceae	Skermania	Skermania piniformis	True	Complete Genome	1	4230116	2026-10-04	1	0	1	0		0
+GCA_000016425.1	8026	unseen	False	Actinobacteria	Micromonosporaceae	Salinispora	Salinispora tropica	True	Complete Genome	1	5183331	2026-10-04		0	1	0		0
+GCA_018459925.1	11109	unseen	False	Actinobacteria	Nocardioidaceae	Nocardioides	Nocardioides aquaticus	True	Complete Genome	1	4580814	2026-10-04	1	0	1	0		0
+GCA_000185805.1	17646	unseen	False	Aquificae	Desulfurobacteriaceae	Thermovibrio	Thermovibrio ammonificans	True	Complete Genome	2	1759526	2026-10-04	0		0		0	1
+GCA_000010785.1	512	unseen	False	Aquificae	Aquificaceae	Hydrogenobacter	Hydrogenobacter thermophilus	True	Complete Genome	1	1743135	2026-10-04		0	0	0	0	1
+GCA_000190575.1	1615	unseen	False	Bacteroidetes	Bacteroidaceae	Phocaeicola	Phocaeicola salanitronis	True	Complete Genome	4	4308663	2026-10-04	0					0
+GCA_000246855.1	17756	unseen	False	Bacteroidetes	Chitinophagaceae	Niastella	Niastella koreensis	True	Complete Genome	1	9033684	2026-10-04		0	0	0	0	0
+GCA_000183135.1	12496	unseen	False	Bacteroidetes	Paludibacteraceae	Paludibacter	Paludibacter propionicigenes	True	Complete Genome	1	3685504	2026-10-04	0	1	0	0	0	0
+GCA_000186225.1	1591	unseen	False	Bacteroidetes	Bacteroidaceae	Bacteroides	Bacteroides helcogenes	True	Complete Genome	1	3998906	2026-10-04	0					0
+GCA_000284335.1	17798	unseen	True	Caldiserica	Caldisericaceae	Caldisericum	Caldisericum exile	True	Complete Genome	1	1558103	2026-10-04	0		0		0	1
+GCA_000020505.1	2397	unseen	False	Chlorobi	Chlorobiaceae	Chlorobaculum	Chlorobaculum parvum	True	Complete Genome	1	2289249	2026-10-04	0	1		0		0
+GCA_000006985.1	2395	unseen	False	Chlorobi	Chlorobiaceae	Chlorobaculum	Chlorobaculum tepidum	True	Complete Genome	1	2154946	2026-10-04	0	1				
+GCA_000177635.2	2497	unseen	True	Chrysiogenetes	Chrysiogenaceae	Desulfurispirillum	Desulfurispirillum indicum	True	Complete Genome	1	2928377	2026-10-04	0	1	0			0
+GCA_000020945.1	16899	unseen	False	Coprothermobacterota	Coprothermobacteraceae	Coprothermobacter	Coprothermobacter proteolyticus	True	Complete Genome	1	1424912	2026-10-04	0					1
+GCA_000144915.1	17800	unseen	True	Crenarchaeota	Acidilobaceae	Acidilobus	Acidilobus saccharovorans	True	Complete Genome	1	1496453	2026-10-04	0					1
+GCA_000017945.1	4191	unseen	False	Crenarchaeota	Desulfurococcaceae	Ignicoccus	Ignicoccus hospitalis	True	Complete Genome	1	1297538	2026-10-04	0		0			
+GCA_000591035.1	4196	unseen	False	Crenarchaeota	Desulfurococcaceae	Aeropyrum	Aeropyrum camini	True	Complete Genome	1	1595994	2026-10-04		0	0			1
+GCA_000018305.1	17023	unseen	True	Crenarchaeota	Thermoproteaceae	Caldivirga	Caldivirga maquilingensis	True	Complete Genome	1	2077567	2026-10-04	0					1
+GCA_000258425.1	17820	unseen	True	Crenarchaeota	Fervidicoccaceae	Fervidicoccus	Fervidicoccus fontis	True	Complete Genome	1	1319206	2026-10-04	0			0		1
+GCA_000019805.1	17030	unseen	False	Crenarchaeota	Thermoproteaceae	Pyrobaculum	Pyrobaculum neutrophilum	True	Complete Genome	1	1769823	2026-10-04	0					1
+GCA_000010985.1	3841	unseen	False	Deferribacteres	Deferribacteraceae	Deferribacter	Deferribacter desulfuricans	True	Complete Genome	2	2542933	2026-10-04	0	1	0	0		
+GCA_046774955.1	3886	unseen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus yunweiensis	True	Complete Genome	6	4736658	2026-10-04		0	0	0	0	0
+GCA_000190555.1	3851	unseen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus proteolyticus	True	Complete Genome	5	2886836	2026-10-04		0				0
+GCA_000020685.1	3863	unseen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus deserti	True	Complete Genome	4	3855329	2026-10-04		0		0		0
+GCA_000252445.1	3893	unseen	False	Deinococcus-Thermus	Deinococcaceae	Deinococcus	Deinococcus gobiensis	True	Complete Genome	7	4406036	2026-10-04		0	1	0	0	0
+GCA_000517625.1	5969	unseen	True	Euryarchaeota	Natrialbaceae	Halostagnicola	Halostagnicola larsenii	True	Complete Genome	5	4131176	2026-10-04		0	0	0	0	0
+GCA_000970145.1	7085	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina siciliae	False	Complete Genome	1	5427890	2026-10-04	0					0
+GCA_000015825.1	7020	unseen	False	Euryarchaeota	Methanomicrobiaceae	Methanoculleus	Methanoculleus marisnigri	True	Complete Genome	1	2478101	2026-10-04	0					0
+GCA_000969985.1	7094	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina barkeri	False	Complete Genome	2	4907186	2026-10-04	0					0
+GCA_030296715.1	6951	unseen	False	Euryarchaeota	Methanobacteriaceae	Methanobacterium	Methanobacterium ferruginis	True	Complete Genome	1	2803797	2026-10-04	0			0		0
+GCA_000145295.1	6898	unseen	False	Euryarchaeota	Methanobacteriaceae	Methanothermobacter	Methanothermobacter marburgensis	True	Complete Genome	2	1639135	2026-10-04	0					1
+GCA_000970245.1	7099	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina mazei	False	Complete Genome	1	4166241	2026-10-04	0					0
+GCA_000151105.2	16869	unseen	False	Euryarchaeota	Thermococcaceae	Thermococcus	Thermococcus barophilus	True	Complete Genome	2	2064237	2026-10-04	0					1
+GCA_000969945.1	7110	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina sp.	False	Complete Genome	2	4553495	2026-10-04	0					0
+GCA_000017165.1	6993	unseen	False	Euryarchaeota	Methanococcaceae	Methanococcus	Methanococcus vannielii	True	Complete Genome	1	1720048	2026-10-04	0					0
+GCA_000204415.1	23083	unseen	True	Euryarchaeota	Methanosaetaceae	Methanothrix	Methanothrix soehngenii	False	Complete Genome	2	3026645	2026-10-04	0					0
+GCA_000007345.1	7086	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina acetivorans	True	Complete Genome	1	5751492	2026-10-04	0					0
+GCA_045689355.1	7028	unseen	False	Euryarchaeota	Methanomicrobiaceae	Methanoculleus	Methanoculleus palmolei	True	Complete Genome	1	1888715	2026-10-04	0					0
+GCA_000196895.1	5968	unseen	True	Euryarchaeota	Halobacteriaceae	Halalkalicoccus	Halalkalicoccus jeotgali	True	Complete Genome	7	3698650	2026-10-04		0				0
+GCA_000327485.1	17857	unseen	True	Euryarchaeota	Methanoregulaceae	Methanoregula	Methanoregula formicica	True	Complete Genome	1	2820858	2026-10-04	0			0		0
+GCA_026684035.1	7033	unseen	True	Euryarchaeota	Methanomicrobiaceae	Methanogenium	Methanogenium organophilum	True	Complete Genome	1	2648164	2026-10-04	0					0
+GCA_000011005.1	17667	unseen	False	Euryarchaeota	Methanocellaceae	Methanocella	Methanocella paludicola	True	Complete Genome	1	2957635	2026-10-04	0		0	0		0
+GCA_000014945.1	7050	unseen	True	Euryarchaeota	Methanosaetaceae	Methanothrix	Methanothrix thermoacetophila	False	Complete Genome	1	1879471	2026-10-04	0					1
+GCA_000304355.2	7016	unseen	False	Euryarchaeota	Methanomicrobiaceae	Methanoculleus	Methanoculleus bourgensis	True	Complete Genome	1	2789774	2026-10-04	0					0
+GCA_025914035.1	7030	unseen	False	Euryarchaeota	Methanomicrobiaceae	Methanoculleus	Methanoculleus submarinus	True	Complete Genome	1	2462514	2026-10-04	0					0
+GCA_000021965.1	17855	unseen	True	Euryarchaeota	Methanoregulaceae	Methanosphaerula	Methanosphaerula palustris	True	Complete Genome	1	2922917	2026-10-04	0					0
+GCA_022870485.1	5929	unseen	False	Euryarchaeota	Halococcaceae	Halococcus	Halococcus dombrowskii	True	Complete Genome	6	3965466	2026-10-04			1	0		0
+GCA_000970265.1	7129	unseen	False	Euryarchaeota	Methanosarcinaceae	Methanosarcina	Methanosarcina lacustris	False	Complete Genome	1	4139808	2026-10-04	0					0
+GCA_000214415.1	6987	unseen	True	Euryarchaeota	Methanocaldococcaceae	Methanotorris	Methanotorris igneus	True	Complete Genome	1	1854197	2026-10-04	0					1
+GCA_000789255.1	18102	unseen	True	Euryarchaeota	Archaeoglobaceae	Geoglobus	Geoglobus acetivorans	True	Complete Genome	1	1860815	2026-10-04	0					1
+GCA_024022995.1	16874	unseen	False	Euryarchaeota	Thermococcaceae	Thermococcus	Thermococcus aggregans	True	Chromosome	1	1889207	2026-10-04	0					1
+GCA_000024625.1	6983	unseen	False	Euryarchaeota	Methanocaldococcaceae	Methanocaldococcus	Methanocaldococcus vulcanius	True	Complete Genome	3	1761737	2026-10-04	0					1
+GCA_000023985.1	6984	unseen	False	Euryarchaeota	Methanocaldococcaceae	Methanocaldococcus	Methanocaldococcus fervens	True	Complete Genome	2	1507251	2026-10-04	0					1
+GCA_000166355.1	18028	unseen	False	Firmicutes	Clostridia, not assigned to family	Caldicellulosiruptor	Caldicellulosiruptor hydrothermalis	True	Complete Genome	1	2770676	2026-10-04	0		1		0	1
+GCA_900176005.1	16802	unseen	True	Firmicutes	Thermoanaerobacteraceae	Thermanaeromonas	Thermanaeromonas toyohensis	True	Chromosome	1	3334124	2026-10-04	0					1
+GCA_000612505.1	11620	unseen	False	Firmicutes	Paenibacillaceae	Paenibacillus	Paenibacillus sabinae	True	Complete Genome	1	5270569	2026-10-04	0	0	1		1	0
+GCA_047456275.1	5399	unseen	False	Firmicutes	Eubacteriaceae	Acetobacterium	Acetobacterium carbinolicum	True	Complete Genome	1	4094424	2026-10-04	0					0
+GCA_041428845.1	17202	unseen	False	Firmicutes	Sporomusaceae	Sporomusa	Sporomusa rhizae	True	Complete Genome	1	5829736	2026-10-04	0					0
+GCA_000262445.1	16844	unseen	False	Firmicutes	Thermoanaerobacteraceae	Thermoanaerobacter	Thermoanaerobacter siderophilus	True	Chromosome	22	2540159	2026-10-04	0					1
+GCA_046058945.1	6866	unseen	False	Firmicutes	Listeriaceae	Brochothrix	Brochothrix campestris	True	Complete Genome	1	2324176	2026-10-04		0	1	0		0
+GCA_025999835.1	23435	unseen	True	Firmicutes	Firmicutes, not assigned to family	Caldinitratiruptor	Caldinitratiruptor microaerophilus	True	Complete Genome	1	3599694	2026-10-04	0					1
+GCA_940677205.1	2754	unseen	False	Firmicutes	Clostridiaceae	Clostridium	Clostridium colinum	True	Complete Genome	1	2035557	2026-10-04	0					0
+GCA_030644225.1	17162	unseen	False	Firmicutes	Selenomonadaceae	Selenomonas	Selenomonas dianae	True	Complete Genome	1	2391311	2026-10-04	0					0
+GCA_000012865.1	16806	unseen	False	Firmicutes	Thermoanaerobacteraceae	Carboxydothermus	Carboxydothermus hydrogenoformans	True	Complete Genome	1	2401520	2026-10-04	0					1
+GCA_028735875.1	1305	unseen	False	Firmicutes	Bacillaceae	Shouchella	Shouchella hunanensis	True	Complete Genome	1	4064600	2026-10-04		0	1		1	0
+GCA_000175295.2	16833	unseen	False	Firmicutes	Thermoanaerobacteraceae	Thermoanaerobacter	Thermoanaerobacter brockii subsp. finnii	True	Complete Genome	1	2344824	2026-10-04	0					1
+GCA_000299355.1	2537	unseen	False	Firmicutes	Gottschalkiaceae	Gottschalkia	Gottschalkia acidurici	True	Complete Genome	2	3108248	2026-10-04	0	1	1	1	1	0
+GCA_030067815.1	12000	unseen	False	Firmicutes	Caryophanaceae	Sporosarcina	Sporosarcina thermotolerans	True	Complete Genome	1	3659279	2026-10-04		0	1	0	1	0
+GCA_000189775.3	18051	unseen	False	Firmicutes	Thermoanaerobacteraceae	Thermoanaerobacterium	Thermoanaerobacterium xylanolyticum	True	Complete Genome	1	2534358	2026-10-04	0		0		1	1
+GCA_004367585.1	11998	unseen	False	Firmicutes	Caryophanaceae	Paenisporosarcina	Paenisporosarcina antarctica	True	Complete Genome	2	3972524	2026-10-04		0	1	0	1	0
+GCA_026651875.1	430	unseen	False	Firmicutes	Alicyclobacillaceae	Alicyclobacillus	Alicyclobacillus fastidiosus	True	Complete Genome	4	6035649	2026-10-04		0	1	0	1	
+GCA_041428605.1	17192	unseen	False	Firmicutes	Sporomusaceae	Sporomusa	Sporomusa paucivorans	True	Complete Genome	1	4787310	2026-10-04	0					0
+GCA_000007085.1	16796	unseen	False	Firmicutes	Thermoanaerobacteraceae	Caldanaerobacter	Caldanaerobacter subterraneus subsp. tengcongensis	True	Complete Genome	1	2689445	2026-10-04	0					1
+GCA_000255115.3	11781	unseen	False	Firmicutes	Peptococcaceae	Desulfosporosinus	Desulfosporosinus acidiphilus	True	Complete Genome	3	4991181	2026-10-04	0					0
+GCA_041428895.1	17201	unseen	False	Firmicutes	Sporomusaceae	Sporomusa	Sporomusa aerivorans	True	Complete Genome	2	6511628	2026-10-04	0		1			0
+GCA_020906275.1	14282	unseen	False	Proteobacteria	Sphingomonadaceae	Sphingorhabdus	Sphingorhabdus litoris	True	Complete Genome	1	3610303	2026-10-04		0	0		0	0
+GCA_000661955.1	17560	unseen	False	Proteobacteria	Lysobacteraceae	Stenotrophomonas	Stenotrophomonas rhizophila	True	Chromosome	8	4648976	2026-10-04	1	0	0			0
+GCA_000092045.1	13625	unseen	False	Proteobacteria	Rhizobiaceae	Rhizobium	Rhizobium etli	True	Complete Genome	7	6530228	2026-10-04			0	0		0
+GCA_028553725.1	13711	unseen	False	Proteobacteria	Rhodobacteraceae	Paracoccus	Paracoccus alcaliphilus	True	Complete Genome	5	4772712	2026-10-04	1	0	0	0		0
+GCA_000153125.2	17910	unseen	True	Proteobacteria	Halieaceae	Congregibacter	Congregibacter litoralis	True	Chromosome	6	4351117	2026-10-04			0		0	0
+GCA_029773605.1	11674	unseen	False	Proteobacteria	Pasteurellaceae	Actinobacillus	Actinobacillus genomospecies 2	False	Complete Genome	1	1883708	2026-10-04		0				0
+GCA_000517565.1	4179	unseen	False	Proteobacteria	Desulfurellaceae	Desulfurella	Desulfurella acetivorans	True	Complete Genome	2	1819992	2026-10-04	0					1
+GCA_021613355.1	12695	unseen	False	Proteobacteria	Pseudoalteromonadaceae	Pseudoalteromonas	Pseudoalteromonas mariniglutinosa	True	Chromosome	27	5031620	2026-10-04			0			0
+GCA_000012365.1	1942	unseen	False	Proteobacteria	Burkholderiaceae	Burkholderia	Burkholderia thailandensis	True	Complete Genome	2	6723972	2026-10-04	1	0	0			0
+GCA_000179015.2	2907	unseen	True	Proteobacteria	Comamonadaceae	Alicycliphilus	Alicycliphilus denitrificans	False	Complete Genome	3	4835713	2026-10-04	0	0				0
+GCA_000224005.3	2449	unseen	False	Proteobacteria	Chromatiaceae	Marichromatium	Marichromatium purpuratum	True	Complete Genome	1	3779112	2026-10-04	0					0
+GCA_000409365.2	5241	unseen	False	Proteobacteria	Enterobacteriaceae	Cronobacter	Cronobacter dublinensis subsp. lausannensis	True	Complete Genome	1	4487112	2026-10-04		0				0
+GCA_002310795.1	12696	unseen	False	Proteobacteria	Pseudoalteromonadaceae	Pseudoalteromonas	Pseudoalteromonas issachenkonii	True	Complete Genome	2	4132618	2026-10-04	1	0	0			0
+GCA_024347575.1	17317	unseen	False	Proteobacteria	Vibrionaceae	Listonella	Listonella pelagia	True	Complete Genome	3	4963975	2026-10-04			0			0
+GCA_029030725.1	12810	unseen	False	Proteobacteria	Pseudomonadaceae	Pseudomonas	Pseudomonas carboxydohydrogena	True	Complete Genome	1	3271440	2026-10-04		0				0
+GCA_026000375.1	4166	unseen	False	Proteobacteria	Desulfovibrionaceae	Pseudodesulfovibrio	Pseudodesulfovibrio portus	True	Complete Genome	1	3403863	2026-10-04	0					0
+GCA_000015565.1	3022	unseen	True	Proteobacteria	Comamonadaceae	Verminephrobacter	Verminephrobacter eiseniae	True	Complete Genome	2	5597943	2026-10-04			0			0
+GCA_024347075.1	17342	unseen	False	Proteobacteria	Vibrionaceae	Vibrio	Vibrio rarus	True	Complete Genome	3	3877193	2026-10-04		0	0	0	0	0
+GCA_000093025.1	23100	unseen	False	Proteobacteria	Methylophilaceae	Methylotenera	Methylotenera versatilis	True	Complete Genome	1	3059871	2026-10-04		0	0		0	0
+GCA_000265295.1	2226	unseen	False	Proteobacteria	Campylobacteraceae	Sulfurospirillum	Sulfurospirillum barnesii	True	Complete Genome	1	2510109	2026-10-04	0		0	1		0
+GCA_000176915.2	4124	unseen	False	Proteobacteria	Desulfovibrionaceae	Pseudodesulfovibrio	Pseudodesulfovibrio aespoeensis	True	Complete Genome	1	3629109	2026-10-04	0					0
+GCA_024346975.1	17309	unseen	False	Proteobacteria	Vibrionaceae	Vibrio	Vibrio neonatus	True	Complete Genome	2	3840645	2026-10-04		0	0	0		0
+GCA_028553805.1	13728	unseen	False	Proteobacteria	Rhodobacteraceae	Paracoccus	Paracoccus saliphilus	True	Complete Genome	2	4621331	2026-10-04		0	0	0	0	0
+GCA_000014965.1	16670	unseen	True	Proteobacteria	Syntrophobacteraceae	Syntrophobacter	Syntrophobacter fumaroxidans	True	Complete Genome	1	4990251	2026-10-04	0					0
+GCA_000022265.1	5807	unseen	False	Proteobacteria	Geobacteraceae	Geotalea	Geotalea daltonii	True	Complete Genome	1	4304501	2026-10-04	0		0		0	0
+GCA_000025485.1	2424	unseen	False	Proteobacteria	Chromatiaceae	Allochromatium	Allochromatium vinosum	True	Complete Genome	3	3669074	2026-10-04	0					0
+GCA_041893865.1	2324	unseen	False	Proteobacteria	Caulobacteraceae	Brevundimonas	Brevundimonas staleyi	False	Complete Genome	2	4127134	2026-10-04		0	0		0	0
+GCA_000010525.1	17440	unseen	False	Proteobacteria	Xanthobacteraceae	Azorhizobium	Azorhizobium caulinodans	True	Complete Genome	1	5369772	2026-10-04		0	0			0
+GCA_048565275.1	3993	unseen	False	Proteobacteria	Desulfobacteraceae	Desulfosarcina	Desulfosarcina variabilis	True	Complete Genome	1	9639276	2026-10-04	0					0
+GCA_040105105.1	2983	unseen	False	Proteobacteria	Comamonadaceae	Polaromonas	Polaromonas hydrogenivorans	True	Complete Genome	6	5365325	2026-10-04	1	0	0	0	0	0
+GCA_043193855.2	17421	unseen	False	Proteobacteria	Xanthobacteraceae	Xanthobacter	Xanthobacter wiegelii	True	Complete Genome	3	5686141	2026-10-04			0	0		0
+GCA_000020125.1	1966	unseen	False	Proteobacteria	Burkholderiaceae	Paraburkholderia	Paraburkholderia phytofirmans	True	Complete Genome	3	8214658	2026-10-04	1	0	0			0
+GCA_014925285.1	12702	unseen	False	Proteobacteria	Pseudoalteromonadaceae	Pseudoalteromonas	Pseudoalteromonas lipolytica	True	Chromosome	36	4570506	2026-10-04		0	0			0
+GCA_000738435.1	24527	unseen	True	Proteobacteria	Rhodobacteraceae	Planktomarina	Planktomarina temperata	True	Complete Genome	1	3288122	2026-10-04		0	0		0	0
+GCA_002355855.1	14181	unseen	False	Proteobacteria	Sphingomonadaceae	Sphingobium	Sphingobium cloacae	True	Complete Genome	7	4547566	2026-10-04	1	0	0			0
+GCA_027118995.1	11349	unseen	True	Proteobacteria	Oxalobacteraceae	Oxalobacter	Oxalobacter vibrioformis	True	Complete Genome	1	2606300	2026-10-04	0					0
+GCA_024347595.1	17301	unseen	False	Proteobacteria	Vibrionaceae	Vibrio	Vibrio pomeroyi	True	Complete Genome	2	5659581	2026-10-04		0	0			0
+GCA_024346755.1	17291	unseen	False	Proteobacteria	Vibrionaceae	Vibrio	Vibrio aerogenes	True	Complete Genome	3	5368019	2026-10-04		0	0			0
+GCA_001632775.1	17450	unseen	False	Proteobacteria	Rhodanobacteraceae	Dokdonella	Dokdonella koreensis	True	Complete Genome	1	4446619	2026-10-04		0	0		0	0
+GCA_029026145.1	6787	unseen	False	Proteobacteria	Legionellaceae	Legionella	Legionella cardiaca	True	Complete Genome	1	3477232	2026-10-04			0			0
+GCA_001983995.1	23576	unseen	False	Proteobacteria	Halieaceae	Halioglobus	Halioglobus japonicus	True	Complete Genome	4	4116357	2026-10-04		0	0	0		0
+GCA_000190435.1	14351	unseen	False	Spirochaetes	Sphaerochaetaceae	Sphaerochaeta	Sphaerochaeta globosa	True	Complete Genome	1	3316466	2026-10-04	0		0	0		0
+GCA_000236685.1	14352	unseen	False	Spirochaetes	Sphaerochaetaceae	Sphaerochaeta	Sphaerochaeta pleomorpha	True	Complete Genome	1	3590853	2026-10-04	0		0	0		0
+GCA_000214355.1	14345	unseen	False	Spirochaetes	Treponemataceae	Treponema	Treponema azotonutricium	True	Complete Genome	1	3855671	2026-10-04	0					0
+GCA_000025885.1	17767	unseen	False	Synergistetes	Synergistaceae	Aminobacterium	Aminobacterium colombiense	True	Complete Genome	1	1980592	2026-10-04	0					0
+GCA_016925555.1	23140	unseen	False	Tenericutes	Mycoplasmataceae	Mycoplasma	Mycoplasma sp.	False	Complete Genome	1	764150	2026-10-04		0				0
+GCA_000183365.1	8627	unseen	False	Tenericutes	Mycoplasmataceae	Mycoplasma	Mycoplasma leachii	True	Complete Genome	1	1008951	2026-10-04		0		0		0
+GCA_000023325.1	17071	unseen	False	Thermotogae	Kosmotogaceae	Kosmotoga	Kosmotoga olearia	True	Complete Genome	1	2302126	2026-10-04	0		0	0	0	1
+GCA_000828675.1	24655	unseen	False	Thermotogae	Thermotogaceae	Thermotoga	Thermotoga profunda	True	Complete Genome	1	2187612	2026-10-04	0					1
+GCA_000016785.1	17068	unseen	False	Thermotogae	Thermotogaceae	Thermotoga	Thermotoga petrophila	True	Complete Genome	1	1823511	2026-10-04	0	1				1
+GCA_000255135.1	17041	unseen	False	Thermotogae	Petrotogaceae	Marinitoga	Marinitoga piezophila	True	Complete Genome	2	2244793	2026-10-04	0					1
+GCA_025837015.1	18137	unseen	False	Thermotogae	Petrotogaceae	Oceanotoga	Oceanotoga sp.	False	Complete Genome	1	2841299	2026-10-04	0					0
+GCA_000019965.1	11301	unseen	True	Verrucomicrobia	Opitutaceae	Opitutus	Opitutus terrae	True	Complete Genome	1	5957605	2026-10-04	0					0
+GCA_000013665.1	470	unseen	True	Proteobacteria	Cellvibrionaceae	Saccharophagus	Saccharophagus degradans	True	Complete Genome	1	5057531	2026-10-04		0	0	1		0
+GCA_029714185.1	22928	unseen	False	Firmicutes	Bacillaceae	Halobacillus	Halobacillus naozhouensis	True	Complete Genome	2	4237314	2026-10-04		0	1	1	1	0
+GCA_000770675.1	1386	unseen	False	Firmicutes	Bacillaceae	Pontibacillus	Pontibacillus chungwhensis	True	Contig	40	3872934	2026-10-04	1	0	1	1	1	0
+GCA_023555375.1	6092	unseen	False	Proteobacteria	Thioalkalibacteraceae	Guyparkeria	Guyparkeria hydrothermalis	True	Contig	9	2433989	2026-10-04			0	1		0
+GCA_042655625.1	1787	unseen	False	Proteobacteria	Boseaceae	Bosea	Bosea minatitlanensis	True	Contig	32	4718955	2026-10-04	1	0	0	1	0	0
+GCA_040545925.1	549	unseen	False	Firmicutes	Bacillaceae	Alkalibacillus	Alkalibacillus flavidus	True	Contig	30	2507785	2026-10-04		0	1	1	1	0
+GCA_030813115.1	1154	unseen	False	Firmicutes	Bacillaceae	Bacillus	Bacillus horti	True	Contig	49	4751370	2026-10-04	1	0	0	1	1	0
+GCA_042643265.1	1489	unseen	False	Firmicutes	Bacillaceae	Virgibacillus	Virgibacillus sediminis	True	Contig	40	3588335	2026-10-04	1	0	1	1	1	0
+GCA_001648555.1	1225	unseen	False	Firmicutes	Bacillaceae	Rossellomorea	Rossellomorea aquimaris	True	Contig	30	4035445	2026-10-04	1	0	1	1	1	0
+GCA_026735135.1	2846	unseen	False	Firmicutes	Clostridiaceae	Clostridium	Clostridium aestuarii	True	Scaffold	31	3582181	2026-10-04	0		0	1	1	0
+GCA_000347775.1	491	unseen	False	Proteobacteria	Alteromonadaceae	Marinobacter	Marinobacter santoriniensis	True	Contig	41	4033468	2026-10-04		0	0	1	0	0
+GCA_042649925.1	271	unseen	True	Proteobacteria	Aeromonadaceae	Pseudaeromonas	Pseudaeromonas sharmana	True	Scaffold	22	3590594	2026-10-04		0	0	1	0	0
+GCA_026735165.1	2842	unseen	False	Firmicutes	Clostridiaceae	Clostridium	Clostridium ganghwense	True	Scaffold	33	4118181	2026-10-04	0		0	1	0	0
+GCA_001306115.1	506	unseen	True	Chloroflexi	Anaerolineaceae	Ornatilinea	Ornatilinea apprima	True	Contig	45	4338330	2026-10-04	0	1	0	0	0	
+GCA_000225705.1	3050	unseen	False	Actinobacteria	Coriobacteriaceae	Collinsella	Collinsella tanakaei	True	Scaffold	45	2492085	2026-10-04	0	1	1	0	0	0
+GCA_001855385.1	5416	unseen	True	Firmicutes	Gottschalkiaceae	Andreesenia	Andreesenia angusta	True	Contig	38	2343503	2026-10-04	0	1	1		0	0
+GCA_030812875.1	18006	unseen	False	Firmicutes	Peptoniphilaceae	Peptoniphilus	Peptoniphilus koenoeneniae	True	Contig	18	1797793	2026-10-04	0	1	1			0
+GCA_030811115.1	3060	unseen	False	Actinobacteria	Atopobiaceae	Olsenella	Olsenella profusa	True	Contig	1	2616809	2026-10-04	0	1	1	0		0
+GCA_000699585.2	2741	unseen	False	Firmicutes	Peptostreptococcaceae	Peptoclostridium	Peptoclostridium litorale	True	Contig	26	3404633	2026-10-04	0	1	0		1	0
+GCA_000024345.1	11076	unseen	False	Actinobacteria	Kribbellaceae	Kribbella	Kribbella flavida	True	Complete Genome	1	7579488	2026-10-04	1	0	1	0		0
+GCA_022870985.1	10464	unseen	False	Proteobacteria	Neisseriaceae	Kingella	Kingella potus	True	Complete Genome	2	2451432	2026-10-04	1	0	0	0		0
+GCA_000227665.3	11910	unseen	False	Proteobacteria	Piscirickettsiaceae	Thiomicrospira	Thiomicrospira aerophila	True	Complete Genome	1	2158359	2026-10-04	1	0				0
+GCA_002218045.2	17335	unseen	False	Proteobacteria	Vibrionaceae	Vibrio	Vibrio rumoiensis	True	Complete Genome	4	4207152	2026-10-04	1	0	0	0		0

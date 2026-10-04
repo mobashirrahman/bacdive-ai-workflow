@@ -1,0 +1,177 @@
+harvest_date: '2026-10-04'
+thresholds:
+  min_support: 30
+  min_purity: 0.95
+accuracy_traits:
+- gram-positive
+- motile2+
+- anaerobic
+- aerobic
+- thermophile
+- spore-forming
+stability_only:
+- acidophile
+- psychrophile
+per_trait:
+  gram-positive:
+    covered: 7508
+    reproduced: 7486
+    fraction: 0.9971
+    passes_gate: true
+    skipped_prediction_refs: 0
+  motile2+:
+    covered: 4032
+    reproduced: 4030
+    fraction: 0.9995
+    passes_gate: true
+    skipped_prediction_refs: 0
+  anaerobic:
+    covered: 6489
+    reproduced: 6418
+    fraction: 0.9891
+    passes_gate: true
+    skipped_prediction_refs: 0
+  aerobic:
+    covered: 3459
+    reproduced: 3401
+    fraction: 0.9832
+    passes_gate: true
+    skipped_prediction_refs: 0
+  thermophile:
+    covered: 11783
+    reproduced: 11764
+    fraction: 0.9984
+    passes_gate: true
+    skipped_prediction_refs: 0
+  spore-forming:
+    covered: 3164
+    reproduced: 3162
+    fraction: 0.9994
+    passes_gate: true
+    skipped_prediction_refs: 0
+traits:
+  gram-positive:
+    fields:
+    - Morphology|cell morphology|gram stain
+    values:
+      negative: 0
+      positive: 1
+  motile2+:
+    fields:
+    - Morphology|cell morphology|motility
+    - Morphology|cell morphology|flagellum arrangement
+    values:
+      gliding: 0
+      monotrichous: 1
+      monotrichous, polar: 1
+      'no': 0
+      peritrichous: 1
+      polar: 1
+  anaerobic:
+    fields:
+    - Physiology and metabolism|oxygen tolerance|oxygen tolerance
+    values:
+      aerobe: 0
+      facultative aerobe: 0
+      facultative anaerobe: 0
+      obligate aerobe: 0
+      obligate anaerobe: 1
+  aerobic:
+    fields:
+    - Physiology and metabolism|oxygen tolerance|oxygen tolerance
+    values:
+      anaerobe: 0
+      obligate aerobe: 1
+      obligate anaerobe: 0
+  thermophile:
+    fields:
+    - Culture and growth conditions|culture temp|temperature
+    values:
+      growth-positive:04-30: 0
+      growth-positive:04-37: 0
+      growth-positive:04-40: 0
+      growth-positive:10: 0
+      growth-positive:10-30: 0
+      growth-positive:10-35: 0
+      growth-positive:10-37: 0
+      growth-positive:10-40: 0
+      growth-positive:10-41: 0
+      growth-positive:10-42: 0
+      growth-positive:10-45: 0
+      growth-positive:15: 0
+      growth-positive:15-30: 0
+      growth-positive:15-35: 0
+      growth-positive:15-37: 0
+      growth-positive:15-40: 0
+      growth-positive:15-41: 0
+      growth-positive:15-42: 0
+      growth-positive:15-45: 0
+      growth-positive:20: 0
+      growth-positive:20-30: 0
+      growth-positive:20-37: 0
+      growth-positive:20-40: 0
+      growth-positive:20-45: 0
+      growth-positive:22: 0
+      growth-positive:22-30: 0
+      growth-positive:22-37: 0
+      growth-positive:22-41: 0
+      growth-positive:22-45: 0
+      growth-positive:25: 0
+      growth-positive:25-30: 0
+      growth-positive:25-37: 0
+      growth-positive:25-40: 0
+      growth-positive:25-41: 0
+      growth-positive:25-42: 0
+      growth-positive:25-45: 0
+      growth-positive:26: 0
+      growth-positive:27: 0
+      growth-positive:28: 0
+      growth-positive:28-37: 0
+      growth-positive:30: 0
+      growth-positive:30-37: 0
+      growth-positive:30-41: 0
+      growth-positive:30-42: 0
+      growth-positive:30-45: 0
+      growth-positive:35: 0
+      growth-positive:37: 0
+      growth-positive:4-30: 0
+      growth-positive:4-37: 0
+      growth-positive:4-40: 0
+      growth-positive:4-45: 0
+      growth-positive:5-30: 0
+      growth-positive:5-37: 0
+      growth-positive:5-41: 0
+      growth-positive:55: 1
+      growth-positive:60: 1
+      growth-positive:65: 1
+      growth-positive:70: 1
+      growth-positive:75: 1
+      growth-positive:80: 1
+      growth-positive:85: 1
+      optimum:20: 0
+      optimum:22: 0
+      optimum:25: 0
+      optimum:25-30: 0
+      optimum:26: 0
+      optimum:26.5: 0
+      optimum:27.5: 0
+      optimum:28: 0
+      optimum:28-30: 0
+      optimum:29: 0
+      optimum:30: 0
+      optimum:30-35: 0
+      optimum:30-37: 0
+      optimum:31: 0
+      optimum:32: 0
+      optimum:32.5: 0
+      optimum:33: 0
+      optimum:33.5: 0
+      optimum:35: 0
+      optimum:37: 0
+      optimum:55: 1
+  spore-forming:
+    fields:
+    - Physiology and metabolism|spore formation|spore formation
+    values:
+      'no': 0
+      'yes': 1
