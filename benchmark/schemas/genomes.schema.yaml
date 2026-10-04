@@ -1,0 +1,45 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Frozen genome selection row
+type: object
+required:
+  - genome_id
+  - bacdive_id
+  - set
+  - genus_unseen
+  - phylum
+  - family
+  - genus
+  - species
+  - type_strain
+  - assembly_level
+  - n_contigs
+  - genome_bp
+  - harvest_date
+properties:
+  genome_id:
+    type: string
+  bacdive_id:
+    type: integer
+  set:
+    type: string
+    enum: [seen, unseen]
+  genus_unseen:
+    type: boolean
+  phylum:
+    type: string
+  family:
+    type: string
+  genus:
+    type: string
+  species:
+    type: string
+  type_strain:
+    type: boolean
+  assembly_level:
+    type: string
+  n_contigs:
+    type: integer
+  genome_bp:
+    type: integer
+  harvest_date:
+    type: string

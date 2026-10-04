@@ -1,0 +1,70 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: Benchmark config
+type: object
+required:
+  - data_root
+  - seed
+  - n_seen
+  - n_unseen
+  - interproscan
+  - interproscan_args
+  - evalue
+  - evalues_robustness
+  - prodigal_mode_primary
+  - degrade
+  - robustness_subset
+  - validate_shortcut_subset
+  - bootstrap
+properties:
+  data_root:
+    type: string
+  seed:
+    type: integer
+  n_seen:
+    type: integer
+    minimum: 1
+  n_unseen:
+    type: integer
+    minimum: 1
+  interproscan:
+    type: object
+    required: [primary]
+  interproscan_args:
+    type: string
+  evalue:
+    type: number
+    exclusiveMinimum: 0
+  evalues_robustness:
+    type: array
+    items:
+      type: number
+  prodigal_mode_primary:
+    type: string
+    enum: [single, meta]
+  degrade:
+    type: object
+    required:
+      [
+        levels,
+        replicates,
+        fragment_median_bp,
+        fragment_sigma,
+        min_fragment_bp,
+        contamination,
+        contamination_levels,
+      ]
+  robustness_subset:
+    type: integer
+    minimum: 1
+  validate_shortcut_subset:
+    type: integer
+    minimum: 1
+  bootstrap:
+    type: integer
+    minimum: 100
+  test_mode:
+    type: boolean
+  publish_docs:
+    type: boolean
+  model_archive:
+    type: string

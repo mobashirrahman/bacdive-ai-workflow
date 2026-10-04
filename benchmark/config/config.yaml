@@ -1,0 +1,41 @@
+# Benchmark configuration. Every random choice derives from `seed`;
+# the seed is written into each result table. Same config in, same bytes out.
+data_root: /scratch/mdra00001/bacdive-bench
+seed: 20261004
+
+# Genomes per set (Phase 3 freezes genomes.tsv; these only size the sampling).
+n_seen: 150
+n_unseen: 150
+
+# Annotation. Primary route for everything downstream: 5.74-105.0,
+# Prodigal single, E-value 1e-20. -dp disables the remote pre-calculated
+# match lookup so runs are offline and version-pure.
+interproscan:
+  primary: "5.74-105.0"
+  "5.74-105.0": /scratch/mdra00001/bacdive-bench/tools/interproscan-5.74-105.0/interproscan.sh
+  "5.63-95.0": /scratch/mdra00001/bacdive-bench/tools/interproscan-5.63-95.0/interproscan.sh
+interproscan_args: "-dp"
+evalue: 1.0e-20
+evalues_robustness: [1.0e-10, 1.0e-20, 1.0e-30]
+prodigal_mode_primary: single
+
+# Completeness degradation (fraction of bases retained, not a CheckM estimate).
+degrade:
+  levels: [100, 90, 80, 70, 60, 50, 40, 30]
+  replicates: 10
+  fragment_median_bp: 20000
+  fragment_sigma: 1.0
+  min_fragment_bp: 1000
+  contamination: [0, 5, 10]
+  contamination_levels: [100, 70]
+
+# Annotation robustness subset (half from each set) and shortcut validation.
+robustness_subset: 100
+validate_shortcut_subset: 20
+bootstrap: 1000
+
+# Test switch: when true, download/annotate rules expect pre-staged fixtures
+# and shortcut validation compares against fixture predictions.
+test_mode: false
+publish_docs: true
+model_archive: Archiv.zip

@@ -1,0 +1,27 @@
+data_root: /scratch/mdra00001/bacdive-bench
+seed: 20261004
+n_seen: 1
+n_unseen: 2
+interproscan:
+  primary: "5.74-105.0"
+  "5.74-105.0": /scratch/mdra00001/bacdive-bench/tools/interproscan-5.74-105.0/interproscan.sh
+  "5.63-95.0": /scratch/mdra00001/bacdive-bench/tools/interproscan-5.63-95.0/interproscan.sh
+interproscan_args: "-dp"
+evalue: 1.0e-20
+evalues_robustness: [1.0e-10, 1.0e-20, 1.0e-30]
+prodigal_mode_primary: single
+degrade:
+  levels: [100, 70, 50]
+  replicates: 2
+  fragment_median_bp: 20000
+  fragment_sigma: 1.0
+  min_fragment_bp: 1000
+  contamination: [0, 5]
+  contamination_levels: [100, 70]
+robustness_subset: 2
+validate_shortcut_subset: 2
+bootstrap: 100
+test_mode: true
+publish_docs: false
+docs_dir: results/docs
+model_archive: Archiv.zip

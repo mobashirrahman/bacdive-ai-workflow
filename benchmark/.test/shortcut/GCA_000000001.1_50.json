@@ -1,0 +1,34 @@
+{
+  "acidophile": {
+    "prediction": 0,
+    "positive_probability": 0.068
+  },
+  "gram-positive": {
+    "prediction": 0,
+    "positive_probability": 0.35710504
+  },
+  "spore-forming": {
+    "prediction": 0,
+    "positive_probability": 0.00022308
+  },
+  "aerobic": {
+    "prediction": 0,
+    "positive_probability": 0.24803223
+  },
+  "anaerobic": {
+    "prediction": 0,
+    "positive_probability": 0.06498506
+  },
+  "thermophile": {
+    "prediction": 0,
+    "positive_probability": 0.00216913
+  },
+  "psychrophile": {
+    "prediction": 0,
+    "positive_probability": 7.622e-05
+  },
+  "motile2+": {
+    "prediction": 0,
+    "positive_probability": 0.25418994
+  }
+}

@@ -1,0 +1,4 @@
+ID_strains,sequence_acc,trait,ability
+101,GCA_000000001.1,gram-positive,1
+101,GCA_000000001.1,aerobic,0
+101,GCA_000000001.1,anaerobic,1

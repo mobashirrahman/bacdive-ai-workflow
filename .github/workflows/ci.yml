@@ -40,3 +40,40 @@ jobs:
             results/bacdive_ai_predictions.csv
             results/report.html
             results/summary.json
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install pinned prediction and workflow dependencies
+        run: |
+          python -m pip install -e '.[dev,workflow]'
+          python -m pip install "snakefmt==2.0.3"
+      - name: Check benchmark code style
+        run: |
+          ruff check bacdive_workflow tests scripts predict.py benchmark/scripts
+          ruff format --check bacdive_workflow tests scripts predict.py benchmark/scripts
+          snakefmt --check benchmark/Snakefile benchmark/rules/*.smk
+      - name: Advisory benchmark lint (upstream --lint limitations)
+        # Upstream `snakemake --lint` crashes on `min_version` (NameError) and
+        # flags intentional design (env-free external InterProScan installs,
+        # directory-prefix params on a shared filesystem), so it is advisory:
+        # lint a copy with the min_version lines stripped and do not gate on it.
+        continue-on-error: true
+        run: |
+          rm -rf /tmp/benchlint && cp -r benchmark /tmp/benchlint
+          sed -i '/^from snakemake.utils import min_version$/d; /^min_version("9.13")$/d' /tmp/benchlint/Snakefile
+          snakemake -s /tmp/benchlint/Snakefile --lint
+      - name: Dry-run the benchmark DAG
+        run: snakemake -s benchmark/Snakefile --dry-run --cores 1
+      - name: Run the offline benchmark test config
+        run: |
+          R=$(mktemp -d)
+          cp -r benchmark/.test/staged/* "$R/"
+          find "$R" -type f -exec touch {} +
+          snakemake -s benchmark/Snakefile --configfile benchmark/.test/config.yaml \
+            --directory "$R" --cores 2 --sdm conda
+          test -f "$R/results/tables/accuracy.tsv"

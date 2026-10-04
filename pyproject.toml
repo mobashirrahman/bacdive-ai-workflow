@@ -15,6 +15,7 @@ dependencies = ["numpy==1.26.4", "scipy==1.12.0", "scikit-learn==1.4.0", "joblib
 [project.optional-dependencies]
 dev = ["pytest>=8,<9", "ruff==0.11.13", "build>=1,<2", "PyYAML==6.0.2"]
 workflow = ["snakemake==9.13.7"]
+bench = ["pandas==2.2.3", "matplotlib==3.8.4", "PyYAML==6.0.2"]
 
 [project.scripts]
 bacdive-predict = "bacdive_workflow.cli:main"
@@ -28,7 +29,7 @@ Repository = "https://github.com/mobashirrahman/bacdive-ai-workflow"
 Issues = "https://github.com/mobashirrahman/bacdive-ai-workflow/issues"
 
 [tool.setuptools]
-packages = ["bacdive_workflow"]
+packages = ["bacdive_workflow", "bacdive_workflow.bench"]
 
 [tool.setuptools.package-data]
 bacdive_workflow = ["model_manifest.json"]
@@ -48,5 +49,6 @@ select = ["E4", "E7", "E9", "F", "I"]
 # Snakemake injects the `snakemake` object into script adapters at runtime.
 "scripts/aggregate_results.py" = ["F821"]
 "scripts/report.py" = ["F821"]
+"benchmark/scripts/*.py" = ["F821"]
 # Bootstrap adds the repository root to sys.path before importing the package.
 "scripts/reproduce_case_study.py" = ["E402"]

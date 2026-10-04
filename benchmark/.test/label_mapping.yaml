@@ -1,0 +1,17 @@
+# Test label mapping: three accuracy-eligible traits; the rest stability-only.
+accuracy_traits:
+  - gram-positive
+  - aerobic
+  - anaerobic
+stability_only:
+  - acidophile
+  - thermophile
+  - psychrophile
+  - spore-forming
+  - motile2+
+traits:
+  gram-positive:
+    fields: [gram stain]
+    values:
+      positive: 1
+      negative: 0

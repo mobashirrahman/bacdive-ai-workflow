@@ -1,0 +1,8 @@
+cores: 16
+sdm: conda
+rerun-incomplete: true
+printshellcmds: true
+conda-frontend: conda
+default-resources:
+  - mem_mb=2048
+  - runtime=60

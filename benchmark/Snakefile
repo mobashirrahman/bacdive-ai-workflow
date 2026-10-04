@@ -1,0 +1,23 @@
+"""BacDive-AI robustness benchmark: unseen genomes, drift, degradation, callers."""
+
+from snakemake.utils import min_version
+
+min_version("9.13")
+
+
+configfile: "benchmark/config/config.yaml"
+
+
+include: "rules/common.smk"
+include: "rules/download.smk"
+include: "rules/annotate.smk"
+include: "rules/predict.smk"
+include: "rules/drift.smk"
+include: "rules/degrade.smk"
+include: "rules/robustness.smk"
+include: "rules/report.smk"
+
+
+rule all:
+    input:
+        RESULT_TABLES + RESULT_FIGURES + DOC_TABLES + DOC_FIGURES,
