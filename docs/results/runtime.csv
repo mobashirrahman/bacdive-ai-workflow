@@ -1,0 +1,4 @@
+stage,jobs,mean_seconds,median_seconds,maximum_seconds,total_job_seconds
+prodigal,120,18.85,14.74,92.33,2261.94
+interproscan,120,176.41,166.36,468.11,21169.65
+predict_traits,120,2.13,1.69,5.67,255.61

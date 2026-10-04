@@ -1,17 +1,22 @@
 .DS_Store
-.snakemake
-data
-logs
-models
-results
-temp
+
+# Local run directories at the repository root only. These patterns are
+# root-anchored on purpose: an unanchored "results" would also swallow the
+# published artifacts in docs/results/.
+/.snakemake/
+/data/
+/logs/
+/models/
+/results/
+/temp/
+
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
-.venv/
-build/
-dist/
-config/local-*
-docs/validation/local-*
+/.venv/
+/build/
+/dist/
+/config/local-*
+/docs/validation/local-*

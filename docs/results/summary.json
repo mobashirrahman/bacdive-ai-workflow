@@ -1,0 +1,131 @@
+{
+  "samples": 120,
+  "metadata_matches": 79,
+  "traits": {
+    "acidophile": {
+      "label": "Acidophilic",
+      "positive": 0,
+      "negative": 120,
+      "mean_label_probability_percent": 92.13
+    },
+    "gram-positive": {
+      "label": "Gram-positive",
+      "positive": 52,
+      "negative": 68,
+      "mean_label_probability_percent": 86.35
+    },
+    "spore-forming": {
+      "label": "Spore-forming",
+      "positive": 0,
+      "negative": 120,
+      "mean_label_probability_percent": 96.46
+    },
+    "aerobic": {
+      "label": "Aerobic",
+      "positive": 13,
+      "negative": 107,
+      "mean_label_probability_percent": 88.96
+    },
+    "anaerobic": {
+      "label": "Anaerobic",
+      "positive": 50,
+      "negative": 70,
+      "mean_label_probability_percent": 78.63
+    },
+    "thermophile": {
+      "label": "Thermophilic",
+      "positive": 0,
+      "negative": 120,
+      "mean_label_probability_percent": 96.59
+    },
+    "psychrophile": {
+      "label": "Psychrophilic",
+      "positive": 0,
+      "negative": 120,
+      "mean_label_probability_percent": 98.0
+    },
+    "motile2+": {
+      "label": "Flagellated motility",
+      "positive": 7,
+      "negative": 113,
+      "mean_label_probability_percent": 89.79
+    }
+  },
+  "reference_comparisons": {
+    "gram-positive": {
+      "eligible_samples": 69,
+      "excluded_samples": 51,
+      "true_positive": 35,
+      "true_negative": 34,
+      "false_positive": 0,
+      "false_negative": 0,
+      "agreement": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "disagreement_sample_ids": [],
+      "reference_mapping": {
+        "positive": true,
+        "negative": false
+      },
+      "interpretation": "Descriptive agreement; training overlap and strain identity are unverified."
+    },
+    "aerobic": {
+      "eligible_samples": 29,
+      "excluded_samples": 91,
+      "true_positive": 2,
+      "true_negative": 26,
+      "false_positive": 0,
+      "false_negative": 1,
+      "agreement": 0.9655172413793104,
+      "precision": 1.0,
+      "recall": 0.6666666666666666,
+      "f1": 0.8,
+      "disagreement_sample_ids": [
+        "AC_130_1.28"
+      ],
+      "reference_mapping": {
+        "aerobe": true,
+        "aerobic": true,
+        "anaerobe": false,
+        "anaerobic": false
+      },
+      "interpretation": "Descriptive agreement; training overlap and strain identity are unverified."
+    },
+    "anaerobic": {
+      "eligible_samples": 29,
+      "excluded_samples": 91,
+      "true_positive": 22,
+      "true_negative": 3,
+      "false_positive": 0,
+      "false_negative": 4,
+      "agreement": 0.8620689655172413,
+      "precision": 1.0,
+      "recall": 0.8461538461538461,
+      "f1": 0.9166666666666666,
+      "disagreement_sample_ids": [
+        "AB1019_Plaque.10",
+        "AB1048_Plaque.11",
+        "AB1680_Plaque.17",
+        "AC_112_1.13"
+      ],
+      "reference_mapping": {
+        "aerobe": false,
+        "aerobic": false,
+        "anaerobe": true,
+        "anaerobic": true
+      },
+      "interpretation": "Descriptive agreement; training overlap and strain identity are unverified."
+    }
+  },
+  "interpretation": "Published model predictions, not experimental phenotype measurements.",
+  "completeness": {
+    "available": 79,
+    "median": 66.02
+  },
+  "contamination": {
+    "available": 79,
+    "median": 0.83
+  },
+  "source_sha256": "d70ad030afb039c9c2b4a06d7b4d32fea2ded75e4349f91f04289f5f3a5963c0"
+}
