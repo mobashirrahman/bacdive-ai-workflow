@@ -96,6 +96,7 @@ rule validate_shortcut:
         fixture_dir=FIXTURE_SHORTCUT,
         ips_executable=config["interproscan"][PRIMARY_IPS],
         ips_args=config["interproscan_args"],
+        strip=str(REPO / "scripts/clean_proteins.py"),
         evalue=EVALUE,
         seed=SEED,
         fragment_median_bp=config["degrade"]["fragment_median_bp"],

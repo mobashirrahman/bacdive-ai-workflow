@@ -111,35 +111,53 @@ for genome in params.genomes:
                     capture_output=True,
                     text=True,
                 )
-                tsv = work / "kept.tsv"
+                # Strip stop characters: InterProScan rejects '*' in sequences.
                 subprocess.run(
-                    [
-                        params.ips_executable,
-                        "-i",
-                        str(faa),
-                        "-f",
-                        "tsv",
-                        "-o",
-                        str(tsv),
-                        "-appl",
-                        "Pfam",
-                        "-cpu",
-                        str(snakemake.threads),
-                        *params.ips_args.split(),
-                    ],
+                    [sys.executable, params.strip, str(faa)],
                     check=True,
                     capture_output=True,
                     text=True,
                 )
-                # Intersect with kept genes: only hits on kept proteins count.
-                pfams, _ = parse_pfams(tsv, evalue)
-                real = {}
-                for trait in TRAITS:
+                if not any(line.startswith(">") for line in faa.read_text().splitlines()):
+                    # No genes called on these fragments; nothing to re-annotate.
+                    real = {}
+                else:
+                    tsv = work / "kept.tsv"
+                    subprocess.run(
+                        [
+                            params.ips_executable,
+                            "-i",
+                            str(faa),
+                            "-f",
+                            "tsv",
+                            "-o",
+                            str(tsv),
+                            "-appl",
+                            "Pfam",
+                            "-cpu",
+                            str(snakemake.threads),
+                            *params.ips_args.split(),
+                        ],
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                    )
+                    # Only hits on kept proteins count; empty Pfam sets are
+                    # reported as missing, never invented.
                     try:
-                        result = predict_one(bundles[trait], pfams)
-                        real[trait] = (int(result["prediction"]), result["positive_probability"])
+                        pfams, _ = parse_pfams(tsv, evalue)
                     except WorkflowError:
-                        real[trait] = ("", "")
+                        pfams = set()
+                    real = {}
+                    for trait in TRAITS:
+                        try:
+                            result = predict_one(bundles[trait], pfams)
+                            real[trait] = (
+                                int(result["prediction"]),
+                                result["positive_probability"],
+                            )
+                        except WorkflowError:
+                            real[trait] = ("", "")
         for trait in TRAITS:
             short = shortcut.get((genome, level, trait))
             if short is None or short["prediction"] == "":
