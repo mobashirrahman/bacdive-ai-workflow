@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.0
+
+### Changed
+
+- Pinned the BacDive-AI v2 release (`10.5281/zenodo.15075932`). The eight
+  model files are byte-identical to v1.1, so predictions are unchanged; v2
+  additionally publishes the training data. `model_manifest.json` records the
+  v2 archive, its nested `models/models.zip`, the training CSV sizes and
+  hashes, and the compatible v1.1 `Archiv.zip` entry.
+- `python -m bacdive_workflow.models` accepts either archive (identified by
+  SHA-256, with the nested v2 zip opened without extracting it to disk) and
+  gains `--training-data DIR` to extract and verify the two training CSVs.
+  The default archive stays `Archiv.zip` when present, else `v2.zip`;
+  `--download` fetches `v2.zip`. `Archiv.zip` remains in git for offline CI.
+- Updated README, USAGE, VALIDATION, PROVENANCE, and the report footer to the
+  v2 DOI; RESULTS notes the historical run used byte-identical models.
+
 ## 1.0.0
 
 ### Fixes

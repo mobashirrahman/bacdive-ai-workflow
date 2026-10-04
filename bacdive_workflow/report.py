@@ -198,7 +198,7 @@ Missing, variable, combined, facultative, and ambiguous labels are excluded. TP/
 <div class="scroll"><table><thead><tr><th>Trait</th><th>Eligible</th><th>Agreement</th><th>TP</th><th>TN</th><th>FP</th><th>FN</th></tr></thead><tbody>{"".join(comparison_rows)}</tbody></table></div>
 <h2>Explore samples</h2><label for="search">Filter by sample, taxon, or result</label><br><input id="search" type="search" placeholder="Search the table">
 <p id="visible" aria-live="polite">{len(rows)} samples shown</p><div class="scroll"><table id="samples"><thead><tr>{"".join(f"<th>{escape(h)}</th>" for h in headers)}</tr></thead><tbody>{"".join(sample_rows)}</tbody></table></div>
-<footer>Feature encoding: binary Pfam presence/absence. Model origin: <a href="https://doi.org/10.5281/zenodo.13757323">BacDive-AI v1.1</a>.
+<footer>Feature encoding: binary Pfam presence/absence. Model origin: <a href="https://doi.org/10.5281/zenodo.15075932">BacDive-AI v2</a>.
 Methods: <a href="https://doi.org/10.1038/s42003-025-08313-3">Koblitz et al., Communications Biology (2025)</a>.<br>
 Source CSV SHA-256: <code>{escape(summary.get("source_sha256", ""))}</code>. This report contains no external scripts or tracking.</footer>
 <script>document.getElementById('search').addEventListener('input',function(){{const q=this.value.toLowerCase();let n=0;document.querySelectorAll('#samples tbody tr').forEach(r=>{{r.hidden=!r.textContent.toLowerCase().includes(q);if(!r.hidden)n++;}});document.getElementById('visible').textContent=n+' samples shown';}});</script>

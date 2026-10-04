@@ -3,11 +3,15 @@
 ## Published models and example
 
 The eight serialized models and `examples/1120941.3.faa.tsv` originate from
-BacDive-AI v1.1, released on 13 September 2024 by Julia Koblitz and Lorenz Christian
-Reimer: https://doi.org/10.5281/zenodo.13757323. The upstream repository is
+BacDive-AI v2, released by Julia Koblitz and Lorenz Christian
+Reimer: https://doi.org/10.5281/zenodo.15075932. The upstream repository is
 https://github.com/LeibnizDSMZ/bacdive-AI. The Zenodo record declares
 `gpl-3.0-or-later`; this workflow uses the same license. The original Git history
-and bundled upstream archive are preserved for attribution.
+and bundled upstream archive are preserved for attribution. `Archiv.zip` is the
+v1.1 archive (`https://doi.org/10.5281/zenodo.13757323`) kept for offline CI and
+quick start; its eight model files are byte-identical to v2, which additionally
+publishes the training data. `python -m bacdive_workflow.models --download`
+fetches `v2.zip`, the pinned release.
 
 The methods paper is Koblitz et al., *Communications Biology* 8, 897 (2025):
 https://doi.org/10.1038/s42003-025-08313-3. This project implements workflow

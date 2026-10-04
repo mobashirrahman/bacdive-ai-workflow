@@ -61,8 +61,11 @@ Results depend on assembly quality and on the InterProScan/Pfam release used.
 
 ## Credit and license
 
-Models and the example annotation come from BacDive-AI v1.1 by Julia Koblitz
-and Lorenz Christian Reimer ([Zenodo](https://doi.org/10.5281/zenodo.13757323)).
+Models and the example annotation come from BacDive-AI v2 by Julia Koblitz
+and Lorenz Christian Reimer ([Zenodo](https://doi.org/10.5281/zenodo.15075932)).
+`Archiv.zip` is the v1.1 archive kept for offline CI and quick start; its eight
+model files are byte-identical to v2. `python -m bacdive_workflow.models --download`
+fetches `v2.zip`, the pinned release.
 The workflow is by Md Mobashir Rahman. When using the method, cite Koblitz,
 Reimer, Pukall & Overmann (2025), *Communications Biology* 8, 897,
 [doi:10.1038/s42003-025-08313-3](https://doi.org/10.1038/s42003-025-08313-3).

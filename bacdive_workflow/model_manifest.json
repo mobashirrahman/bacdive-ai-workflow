@@ -1,9 +1,12 @@
 {
-  "release": "v1.1",
-  "doi": "10.5281/zenodo.13757323",
+  "release": "v2",
+  "doi": "10.5281/zenodo.15075932",
   "license": "GPL-3.0-or-later",
-  "url": "https://zenodo.org/records/13757323/files/Archiv.zip?download=1",
-  "archive_sha256": "2d4b29a262b6813f88a31b838b050d89de6b5aa7ef24955ce04003e0333ebd11",
+  "url": "https://zenodo.org/records/15075932/files/v2.zip?download=1",
+  "archive_sha256": "f48d8a59f36f7925db03796b5557ae48b951e9307af38e0fc064cdf571e59cb2",
+  "models_member": "models/models.zip",
+  "models_member_sha256": "ed1e336a0f1a911f218647947364613784eb6fe03657027e8307a5a263cc60a6",
+  "models_member_bytes": 26414772,
   "models": {
     "acidophile_data.p": {
       "sha256": "e49ef48b6ab1077bb159714b954999b2e61b92aea3a0edb02e28ef9a3660a1f1",
@@ -37,5 +40,30 @@
       "sha256": "82b198e8b1b7af03201614891291a5d84065445ebcf212027a265cc4d6458bd7",
       "bytes": 30130907
     }
-  }
+  },
+  "training_data": {
+    "member": "training_data.zip",
+    "sha256": "fcb7466a87b895ffebd1616185c14a2142751981ab5fea580eebff65b8eb0d4f",
+    "bytes": 142344929,
+    "files": {
+      "data/training_data_labels.csv": {
+        "sha256": "896df6bbeffc97baf7653c2219da8bb4f223ffad80de4eb5a89a84091e5b30e2",
+        "bytes": 1429666
+      },
+      "data/training_data_features.csv": {
+        "sha256": "f225f91fb328bf8e90570ed3cbaa4c4372c297981260710c239f8929524075e1",
+        "bytes": 534768807
+      }
+    }
+  },
+  "compatible_archives": [
+    {
+      "name": "Archiv.zip",
+      "release": "v1.1",
+      "doi": "10.5281/zenodo.13757323",
+      "url": "https://zenodo.org/records/13757323/files/Archiv.zip?download=1",
+      "archive_sha256": "2d4b29a262b6813f88a31b838b050d89de6b5aa7ef24955ce04003e0333ebd11",
+      "note": "v1.1 archive kept for offline CI and quick start; its eight model files are byte-identical to v2."
+    }
+  ]
 }

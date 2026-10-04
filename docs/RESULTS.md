@@ -2,7 +2,7 @@
 
 These results reproduce the saved project run of 26 May 2025, with corrected
 sample identity and metadata joining. They use the published BacDive-AI v1.1
-models. Full provenance and interpretation limits are in [PROVENANCE.md](PROVENANCE.md).
+models. The v2 models are byte-identical, so these historical figures are unchanged. Full provenance and interpretation limits are in [PROVENANCE.md](PROVENANCE.md).
 
 ## Outcomes
 

@@ -18,6 +18,11 @@ snakemake --cores 2
 python scripts/check_example.py results/predictions/1120941.3.json
 ```
 
+The pinned release is BacDive-AI v2 (`10.5281/zenodo.15075932`); `Archiv.zip`
+is the v1.1 archive with byte-identical model files, kept so the quick start
+stays offline. Use `--download` to fetch `v2.zip`, or `--training-data DIR`
+to also extract the published training CSVs from a v2 archive.
+
 This runs inference on the upstream *Actinomyces dentalis* DSM 19115 annotation
 example. It does not need Prodigal, Java, or an InterProScan database because the
 Pfam annotation is included. Outputs:

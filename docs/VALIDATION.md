@@ -11,7 +11,7 @@ Every figure below was measured on the models and annotations in this repository
 | numpy | 1.26.4 |
 | scipy | 1.12.0 |
 | scikit-learn | 1.4.0 |
-| Models | BacDive-AI v1.1, `10.5281/zenodo.13757323` |
+| Models | BacDive-AI v2, `10.5281/zenodo.15075932` (models byte-identical to v1.1 `10.5281/zenodo.13757323`) |
 
 Library versions are pinned in `pyproject.toml`. Predicted probabilities can
 shift slightly between scikit-learn versions, so confidences are not expected to
@@ -81,8 +81,9 @@ any predicted class.
 
 ## Model integrity
 
-`bacdive_workflow/model_manifest.json` pins SHA-256 for `Archiv.zip` and for each
-of the eight extracted models. `python -m bacdive_workflow.models` refuses an
+`bacdive_workflow/model_manifest.json` pins SHA-256 for `v2.zip` (and its nested
+`models/models.zip` and training-data members), for each of the eight extracted
+models, and for the compatible v1.1 `Archiv.zip`. `python -m bacdive_workflow.models` refuses an
 archive or model whose checksum does not match, so a substituted pickle cannot
 be loaded silently. `scikit-learn`'s `InconsistentVersionWarning` is promoted to
 an error during unpickling.
