@@ -211,6 +211,70 @@ def test_ambiguous_reference_labels_are_excluded():
     assert result["agreement"] == 1
 
 
+def test_exclusion_reasons_are_reported_separately():
+    # A sample with no usable label and a sample with an ambiguous label are both
+    # excluded, but for different reasons and must not be conflated.
+    rows = [
+        {"sample_id": "a", "gram_stain": "positive", "gram-positive_prediction": True},
+        {"sample_id": "b", "gram_stain": "variable", "gram-positive_prediction": False},
+        {"sample_id": "c", "gram_stain": "", "gram-positive_prediction": False},
+        {"sample_id": "d", "gram_stain": "negative,positive", "gram-positive_prediction": False},
+    ]
+    result = comparison(rows, "gram-positive", "gram_stain", {"positive": True, "negative": False})
+    assert result["eligible_samples"] == 1
+    assert result["samples_missing_reference_label"] == 1
+    assert result["samples_with_unmapped_reference_label"] == 2
+    assert (
+        result["excluded_samples"]
+        == result["samples_missing_reference_label"]
+        + result["samples_with_unmapped_reference_label"]
+    )
+
+
+def test_reference_labels_are_case_insensitive():
+    # The source table mixes "anaerobe/microaerophile" and "Anaerobe/Microaerophile".
+    mapping = {"aerobe": True, "anaerobe": False}
+    rows = [
+        {"sample_id": "a", "oxygen_tolerance": "Aerobe", "aerobic_prediction": True},
+        {"sample_id": "b", "oxygen_tolerance": "anaerobe", "aerobic_prediction": False},
+        {
+            "sample_id": "c",
+            "oxygen_tolerance": "Anaerobe/Microaerophile",
+            "aerobic_prediction": True,
+        },
+    ]
+    result = comparison(rows, "aerobic", "oxygen_tolerance", mapping)
+    assert result["eligible_samples"] == 2
+    assert result["samples_with_unmapped_reference_label"] == 1
+    assert result["agreement"] == 1
+
+
+def test_interproscan_header_row_is_tolerated(tmp_path):
+    # Real `interproscan.sh -f tsv` output starts with a commented header line.
+    header = (
+        "#EVIDENCE_DATABASE\tSEQUENCE_LENGTH\tSEQUENCE_ACC\tANALYSIS\tSIGNATURE_ACCESSION\t"
+        "SIGNATURE_DESCRIPTION\tSTART_LOCATION\tSTOP_LOCATION\tSCORE\tSTATUS\tDATE\t"
+        "INTERPRO_ANNOTATION\tINTERPRO_DESCRIPTION\tGO_ANNOTATION\tPATHWAYS\n"
+    )
+    path = tmp_path / "input.tsv"
+    path.write_text(header + annotation())
+    pfams, counts = parse_pfams(path)
+    assert pfams == {"PF00001"}
+    # The header is counted as a row but classified as a non-Pfam analysis, so it
+    # never reaches the Pfam accession check.
+    assert counts["rows"] == 2
+    assert counts["pfam_rows"] == 1
+    assert counts["retained_rows"] == 1
+    assert counts["other_analysis_rows"] == 1
+
+
+def test_report_rejects_non_numeric_quality_fields(tmp_path):
+    rows = aggregate([legacy_result(tmp_path)])
+    rows[0]["completeness"] = "not-a-number"
+    with pytest.raises(WorkflowError, match="completeness"):
+        summarize(rows)
+
+
 def test_report_escapes_external_metadata(tmp_path):
     rows = aggregate([legacy_result(tmp_path)])
     rows[0]["taxon"] = "<script>alert('x')</script>"

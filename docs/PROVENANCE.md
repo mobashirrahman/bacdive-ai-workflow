@@ -42,7 +42,21 @@ verification. Missing, variable, and combined Gram labels are excluded from
 binary comparison. Oxygen comparisons include only explicit pure
 aerobe/aerobic/anaerobe labels; ambiguous, facultative, microaerophilic, and
 combined labels are excluded. Each metric records its denominator and label
-mapping in `docs/results/summary.json`.
+mapping in `docs/results/summary.json`, and separates samples excluded for a
+missing label from those excluded for an unmappable one.
+
+Known quirks in the supplied source values, carried through unchanged:
+
+- `sgbs_user_genome` is the literal `NA` for the 41 records not sourced from
+  BacDive, rather than an empty field. They are matched by `sample_id`, which is
+  present for every genome, so this does not affect the join.
+- Oxygen tolerance mixes casing (`anaerobe/microaerophile` and
+  `Anaerobe/Microaerophile`). Labels are lowercased before mapping, so both are
+  excluded consistently.
+- One label reads `Facultitative anaerobe`, a typo for facultative. It is
+  excluded either way because only pure labels are scored.
+- An `NA` label is cleaned to empty at read time and is therefore reported as a
+  missing label rather than an ambiguous one.
 
 Genome completeness and contamination are carried over from the supplied
 tables. Their estimation method is not established here. Quality fields are

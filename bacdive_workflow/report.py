@@ -3,6 +3,7 @@
 import argparse
 import csv
 import html
+import math
 import statistics
 from pathlib import Path
 
@@ -20,22 +21,36 @@ def as_bool(value):
 def comparison(rows, trait, field, mapping):
     tp = tn = fp = fn = 0
     disagreements = []
+    missing_label = 0
+    unmapped_label = 0
     for row in rows:
         label = row.get(field, "").strip().lower()
+        if not label:
+            missing_label += 1
+            continue
         if label not in mapping:
+            unmapped_label += 1
             continue
         truth = mapping[label]
         prediction = as_bool(row[f"{trait}_prediction"])
-        tp += truth and prediction
-        tn += not truth and not prediction
-        fp += not truth and prediction
-        fn += truth and not prediction
+        if truth and prediction:
+            tp += 1
+        elif not truth and not prediction:
+            tn += 1
+        elif prediction:
+            fp += 1
+        else:
+            fn += 1
         if truth != prediction:
             disagreements.append(row["sample_id"])
     count = tp + tn + fp + fn
     return {
         "eligible_samples": count,
-        "excluded_samples": len(rows) - count,
+        "excluded_samples": missing_label + unmapped_label,
+        # Kept separate so the two reasons for exclusion are not conflated. A
+        # source "NA" is cleaned to empty upstream and lands in the first bucket.
+        "samples_missing_reference_label": missing_label,
+        "samples_with_unmapped_reference_label": unmapped_label,
         "true_positive": tp,
         "true_negative": tn,
         "false_positive": fp,
@@ -63,10 +78,19 @@ def summarize(rows):
         "reference_comparisons": {},
         "interpretation": "Published model predictions, not experimental phenotype measurements.",
     }
+    required = {"metadata_matched", *(f"{t}_prediction" for t in selected)}
+    missing_columns = required - set(rows[0])
+    if missing_columns:
+        raise WorkflowError(
+            "Report input is missing columns: " + ", ".join(sorted(missing_columns))
+        )
     for trait in selected:
         positives = sum(as_bool(r[f"{trait}_prediction"]) for r in rows)
-        confidences = [float(r[f"{trait}_confidence"]) for r in rows]
-        if any(not 50 <= c <= 100 for c in confidences):
+        try:
+            confidences = [float(r[f"{trait}_confidence"]) for r in rows]
+        except (KeyError, ValueError) as error:
+            raise WorkflowError(f"Invalid or missing confidence for {trait}: {error}") from error
+        if any(not math.isfinite(c) or not 50 <= c <= 100 for c in confidences):
             raise WorkflowError(f"Invalid confidence values for {trait}.")
         output["traits"][trait] = {
             "label": TRAITS[trait],
@@ -89,7 +113,17 @@ def summarize(rows):
                 rows, trait, "oxygen_tolerance", mapping
             )
     for field in ("completeness", "contamination"):
-        values = [float(row[field]) for row in rows if row.get(field)]
+        values = []
+        for row in rows:
+            raw = row.get(field, "").strip()
+            if not raw:
+                continue
+            try:
+                values.append(float(raw))
+            except ValueError as error:
+                raise WorkflowError(
+                    f"{row.get('sample_id', '?')}: {field} is not a number: {raw!r}."
+                ) from error
         output[field] = {
             "available": len(values),
             "median": round(statistics.median(values), 2) if values else None,

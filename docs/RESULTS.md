@@ -28,6 +28,23 @@ models. Full provenance and interpretation limits are in [PROVENANCE.md](PROVENA
 - Completeness and contamination are available for 79 genomes. Median supplied
   completeness is 66.02%; median contamination is 0.83%.
 
+## Why samples are excluded from a comparison
+
+`summary.json` reports the two reasons separately, because combining them
+overstates how much data was merely ambiguous:
+
+| Comparison | Eligible | No usable label | Ambiguous label |
+| --- | ---: | ---: | ---: |
+| Gram | 69 | 47 | 4 |
+| Aerobic | 29 | 47 | 44 |
+| Anaerobic | 29 | 47 | 44 |
+
+The 47 genomes without a usable label are the 41 sourced outside BacDive, which
+have no reference record at all, plus 6 whose source label is `NA`. An empty or
+`NA` label is cleaned to empty during reading, so the two cases cannot be told
+apart downstream. The 4 ambiguous Gram labels are `variable` and
+`negative,positive`.
+
 Agreement is descriptive, and the Gram figure is additionally circular: the
 reference labels come from BacDive, the same curated database the models were
 trained on, so near-perfect agreement is expected and is not evidence of

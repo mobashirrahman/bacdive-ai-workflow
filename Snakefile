@@ -53,6 +53,7 @@ rule prodigal:
         proteins="results/proteins/{sample}.faa",
     params:
         mode=PRODIGAL_MODE,
+        strip=str(ROOT / "scripts/clean_proteins.py"),
     log:
         "logs/prodigal/{sample}.log",
     benchmark:
@@ -60,7 +61,10 @@ rule prodigal:
     conda:
         "envs/prodigal.yaml"
     shell:
-        "prodigal -i {input.genome:q} -a {output.proteins:q} -p {params.mode:q} -q > {log:q} 2>&1 && sed -i 's/\\*//g' {output.proteins:q}"
+        # Portable: BSD/macOS sed requires an argument to -i, so filter via Python
+        # instead of an in-place GNU-only substitution.
+        "prodigal -i {input.genome:q} -a {output.proteins:q} -p {params.mode:q} -q > {log:q} 2>&1 "
+        "&& python {params.strip:q} {output.proteins:q}"
 
 
 rule interproscan:
