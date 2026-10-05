@@ -50,8 +50,10 @@ jobs:
           cache: pip
       - name: Install pinned prediction and workflow dependencies
         run: |
-          python -m pip install -e '.[dev,workflow]'
+          python -m pip install -e '.[dev,workflow,bench]'
           python -m pip install "snakefmt==2.0.3"
+          # Snakemake --sdm conda needs conda on PATH; the runner ships it off PATH.
+          echo "$CONDA/bin" >> "$GITHUB_PATH"
       - name: Check benchmark code style
         run: |
           ruff check bacdive_workflow tests scripts predict.py benchmark/scripts
