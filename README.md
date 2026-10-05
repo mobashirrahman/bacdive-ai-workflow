@@ -53,6 +53,15 @@ See also the [report](docs/results/report.html) and [VALIDATION](docs/VALIDATION
 python scripts/reproduce_case_study.py --check
 ```
 
+## Benchmark
+
+How far can the predictions be trusted on unseen genomes, incomplete
+genomes, and under a different annotation route? The `benchmark/` workflow
+answers with leakage-controlled accuracy, annotation drift, completeness
+degradation, and annotation robustness on 324 frozen genomes. Read
+[docs/BENCHMARK.md](docs/BENCHMARK.md) (tables and figures in
+[docs/benchmark/](docs/benchmark/)) before citing any figure.
+
 ## Limits
 
 A prediction is an estimate from a protein-family inventory, not a measured

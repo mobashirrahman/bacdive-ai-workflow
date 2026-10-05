@@ -129,6 +129,22 @@ pytest -q
 python scripts/reproduce_case_study.py --check
 ```
 
+## Robustness benchmark
+
+```bash
+snakemake -s benchmark/Snakefile --directory <data_root>/run \
+  --workflow-profile benchmark/profiles/local --sdm conda --cores 16 \
+  --resources ips=4
+python scripts/build_benchmark_tables.py --check
+```
+
+This runs leakage-controlled accuracy, annotation drift, completeness
+degradation, and annotation robustness on the 324 frozen genomes in
+`benchmark/config/genomes.tsv`. Design, results, and limits are in
+[BENCHMARK.md](BENCHMARK.md); generated tables and figures live in
+`docs/benchmark/`. An offline test config (`benchmark/.test/`) exercises
+the same rules with the real models in minutes; see `benchmark/README.md`.
+
 CI runs regression checks, the actual upstream model example through Snakemake,
 and exact artifact reproduction. See [CONTRIBUTING.md](../CONTRIBUTING.md), the
 [changelog](../CHANGELOG.md), and [validation record](VALIDATION.md).

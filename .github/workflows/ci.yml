@@ -77,3 +77,5 @@ jobs:
           snakemake -s benchmark/Snakefile --configfile benchmark/.test/config.yaml \
             --directory "$R" --cores 2 --sdm conda
           test -f "$R/results/tables/accuracy.tsv"
+      - name: Verify benchmark tables are generated, not hand-typed
+        run: python scripts/build_benchmark_tables.py --check

@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.2.0
+
+### Added
+
+- Benchmark workflow (`benchmark/`) answering how far BacDive-AI predictions
+  can be trusted on unseen genomes, incomplete genomes, and under a different
+  annotation route. Full report in `docs/BENCHMARK.md`, generated tables and
+  figures in `docs/benchmark/`.
+- Leakage-controlled accuracy on 150 seen and 174 unseen genomes (32
+  genus-unseen): unseen matches seen within bootstrap intervals on all six
+  eligible traits; 35 disagreements listed for follow-up.
+- Annotation drift against the published training features (median Jaccard
+  0.60 vs our 5.74-105.0 annotation, 0.69 vs training-era 5.63-95.0; 34/150
+  genomes change a prediction), with the undocumented features-file schema
+  characterized from data.
+- Completeness degradation by seeded fragment loss with real re-annotation
+  shortcut validation (318/320 agree): motility and spore formation fragile
+  (5% flip thresholds at 100% and 90% completeness), losses run
+  positive-to-negative.
+- Annotation robustness across E-value, gene caller, and Pfam release
+  (class agreement at least 0.94 except motility/spore formation at strict
+  E-values).
+- Frozen selection (`benchmark/config/genomes.tsv`, `label_mapping.yaml`,
+  `training_lookup.json`) with calibrated BacDive mappings (all six traits
+  pass the 95%-on-500 gate), offline `.test` config, and
+  `scripts/build_benchmark_tables.py --check` in CI.
+
 ## 1.1.0
 
 ### Changed
