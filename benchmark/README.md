@@ -2,7 +2,7 @@
 
 Analyses on selected isolate genomes: leakage-controlled accuracy (A),
 annotation drift vs published features (B), completeness degradation (C),
-annotation robustness (D). Design in `docs/BENCHMARK.md` (Phase 8).
+annotation robustness (D). Design and results in `docs/BENCHMARK.md`.
 
 ```bash
 snakemake -s benchmark/Snakefile --directory <data_root>/run \
@@ -14,7 +14,7 @@ InterProScan runs offline and version-pure (`-dp`); `--resources ips=4`
 caps concurrent InterProScan jobs at 4 (each uses threads 4).
 
 Config: `benchmark/config/config.yaml`. Selection `genomes.tsv` and
-`label_mapping.yaml` are frozen in Phase 3; logic lives in
+`label_mapping.yaml` are frozen and committed; logic lives in
 `bacdive_workflow/bench/` with tests in `tests/test_bench.py`.
 
 Offline check (real models, fixture annotation, ~1 min):

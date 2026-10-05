@@ -23,6 +23,8 @@
 - Annotation robustness across E-value, gene caller, and Pfam release
   (class agreement at least 0.94 except motility/spore formation at strict
   E-values).
+- Redesigned benchmark figures (colour-blind-checked palette, direct labels,
+  byte-identical across reruns) and a README that leads with the findings.
 - `benchmark/.test/stage.sh` stages the offline fixture with timestamps in
   dependency order, so the test run never invokes the real InterProScan.
 - Frozen selection (`benchmark/config/genomes.tsv`, `label_mapping.yaml`,

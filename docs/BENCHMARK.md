@@ -85,6 +85,8 @@ Seen numbers are training-set performance (upper bound), not accuracy.
 | thermophile | genus_unseen | 31 | 9 | 22 | — | — | — — | — | — |
 <!-- /benchmark:accuracy -->
 
+![Balanced accuracy on unseen species and training genomes](benchmark/accuracy.png)
+
 Unseen accuracy matches seen accuracy within bootstrap intervals on every
 eligible trait, so there is no drop at the species level. Most unseen
 genomes still belong to a genus present in training; the genus-unseen groups
@@ -176,6 +178,8 @@ drift with the threshold difference and are shown only for reference.
 | 5.74-105.0 | 150 | 0.857 | 0.716 | 15 | 0.604 | 34 |
 <!-- /benchmark:drift -->
 
+![Similarity to the published training Pfam sets per InterProScan version](benchmark/drift.png)
+
 With the training-era InterProScan 5.63-95.0 (Pfam 35.0) our pipeline
 reproduces the published Pfam sets almost exactly, and only 2 of 150 genomes
 change any prediction. That supports reading the fourth column as an E-value
@@ -203,6 +207,8 @@ labelled subset:
 | spore-forming | 1.000 | 0.989 | 1.000 | 0.990 | 0.890 |
 | thermophile | 1.000 | 1.000 | 0.990 | 0.990 | 0.960 |
 <!-- /benchmark:robustness -->
+
+![Share of calls that change per annotation choice](benchmark/robustness.png)
 
 Gene caller barely moves classes. Pfam release agrees on at least 0.99 of
 calls for every trait except motility (0.94), consistent with the drift
