@@ -58,10 +58,10 @@ for path in snakemake.input.primary + snakemake.input.legacy:
     model_pfams = set()
     for bundle in bundles.values():
         model_pfams |= set(bundle["categories"])
-    for pfam in set(ours) - set(theirs):
+    for pfam in sorted(set(ours) - set(theirs)):
         if pfam in model_pfams:
             gain_counter[(ips, pfam)] += 1
-    for pfam in set(theirs) - set(ours):
+    for pfam in sorted(set(theirs) - set(ours)):
         if pfam in model_pfams:
             loss_counter[(ips, pfam)] += 1
 
@@ -89,7 +89,11 @@ with open(snakemake.output.pfams, "w", newline="", encoding="utf-8") as handle:
         handle, fieldnames=["ips_version", "pfam", "direction", "genomes"], delimiter="\t"
     )
     writer.writeheader()
-    for (ips, pfam), count in gain_counter.most_common(50):
-        writer.writerow({"ips_version": ips, "pfam": pfam, "direction": "gained", "genomes": count})
-    for (ips, pfam), count in loss_counter.most_common(50):
-        writer.writerow({"ips_version": ips, "pfam": pfam, "direction": "lost", "genomes": count})
+    # Fully deterministic ranking: count desc, then version and accession.
+    # (Counter.most_common tie order follows set-iteration order, which varies
+    # with hash randomization across runs.)
+    ranked = sorted(gain_counter.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    ranked += sorted(loss_counter.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    for (ips, pfam), count in ranked[:100]:
+        direction = "gained" if (ips, pfam) in gain_counter else "lost"
+        writer.writerow({"ips_version": ips, "pfam": pfam, "direction": direction, "genomes": count})
