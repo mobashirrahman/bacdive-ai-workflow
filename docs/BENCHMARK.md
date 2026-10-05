@@ -22,7 +22,8 @@ typed by hand.
   32-genome genus-unseen subset. Reference labels come from calibrated BacDive
   mappings, never from BacDive-AI outputs.
 - **B. Annotation drift.** Seen-set Pfam sets from our annotation (two
-  InterProScan versions) versus the published training feature sets.
+  InterProScan versions) versus the published training feature sets, at the
+  same E-value threshold.
 - **C. Completeness degradation.** Seeded fragment loss (8 levels, 10
   replicates, contamination at 100% and 70%), with a real re-annotation
   shortcut validation on 20 genomes.
@@ -85,7 +86,9 @@ Seen numbers are training-set performance (upper bound), not accuracy.
 <!-- /benchmark:accuracy -->
 
 Unseen accuracy matches seen accuracy within bootstrap intervals on every
-eligible trait — there is no leakage cliff. The 35 disagreements
+eligible trait, so there is no drop at the species level. Most unseen
+genomes still belong to a genus present in training; the genus-unseen groups
+are too small to score, so generalisation to new genera is not established. The 35 disagreements
 (`docs/benchmark/disagreements.tsv`: 11 aerobic, 9 gram-positive, 6
 motile2+, 5 thermophile, 3 anaerobic, 1 spore-forming) are listed with
 genome, taxon, label, and probability for follow-up. Genus-unseen groups
@@ -93,67 +96,94 @@ genome, taxon, label, and probability for follow-up. Genus-unseen groups
 
 ## C. Completeness degradation
 
-Flip rate relative to the full-genome prediction (unseen set, no
-contamination); direction splits positive→negative and negative→positive.
-Losses are overwhelmingly positive→negative: losing genes removes positive
-signals rather than inventing them.
+A degraded prediction can only flip if there is something to lose, so the
+table conditions on the full-genome call. "Lost" is the share of genomes
+predicted positive on the full genome that are called negative at that
+completeness (unseen set, no contamination, 10 replicates per genome). The
+last column is the opposite error among full-genome negatives.
 
 <!-- benchmark:flip -->
-| Trait | L100 | L70 | L50 | L30 | Direction at L50 |
-| --- | ---: | ---: | ---: | ---: | --- |
-| acidophile | 0.000 | 0.006 | 0.006 | 0.006 | +→− 0.006, −→+ 0.000 |
-| aerobic | 0.000 | 0.027 | 0.078 | 0.219 | +→− 0.075, −→+ 0.002 |
-| anaerobic | 0.000 | 0.006 | 0.020 | 0.134 | +→− 0.018, −→+ 0.001 |
-| gram-positive | 0.000 | 0.021 | 0.036 | 0.078 | +→− 0.022, −→+ 0.014 |
-| motile2+ | 0.000 | 0.194 | 0.339 | 0.394 | +→− 0.339, −→+ 0.000 |
-| psychrophile | 0.000 | 0.000 | 0.000 | 0.000 | +→− 0.000, −→+ 0.000 |
-| spore-forming | 0.000 | 0.140 | 0.202 | 0.207 | +→− 0.202, −→+ 0.000 |
-| thermophile | 0.000 | 0.039 | 0.116 | 0.175 | +→− 0.116, −→+ 0.000 |
+| Trait | Positive genomes | Lost at 90% | Lost at 70% | Lost at 50% | Lost at 30% | Negatives turned positive at 50% |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| acidophile | 1 of 174 | 0.30 | 1.00 | 1.00 | 1.00 | 0.000 |
+| aerobic | 72 of 174 | 0.02 | 0.06 | 0.18 | 0.53 | 0.004 |
+| anaerobic | 84 of 174 | 0.00 | 0.01 | 0.04 | 0.28 | 0.002 |
+| gram-positive | 52 of 174 | 0.01 | 0.03 | 0.07 | 0.23 | 0.020 |
+| motile2+ | 70 of 174 | 0.15 | 0.48 | 0.84 | 0.98 | 0.000 |
+| psychrophile | 0 of 174 | — | — | — | — | 0.000 |
+| spore-forming | 36 of 174 | 0.19 | 0.68 | 0.97 | 1.00 | 0.000 |
+| thermophile | 32 of 174 | 0.03 | 0.21 | 0.63 | 0.95 | 0.000 |
 <!-- /benchmark:flip -->
 
-Per-trait lowest completeness with flip rate below 5% (bootstrap interval
-over genomes):
+![Positive calls lost with completeness](benchmark/flip_rate.png)
+
+The error is one-directional. Negatives almost never turn positive, so a
+positive call on an incomplete genome is as reliable as on a complete one,
+while a negative call is weak evidence for the gene-rich traits: at 50%
+completeness nearly all predicted spore-formers, most motile genomes and
+about two thirds of thermophiles are called negative. Gram stain and oxygen
+preference hold up far better. Averaged over all genomes these losses look
+small, because most genomes are negative for these traits and cannot flip;
+`docs/benchmark/degrade_summary.tsv` reports both views (`flip_rate` over all
+draws, `positive_loss_rate` over full-genome positives).
+
+Lowest tested completeness (10-point steps) at which more than 95% of
+positive calls survive, both sets pooled, with a bootstrap interval over
+positive genomes. 100% means that even the 90% level loses more than 5%. The
+last column is the same threshold on the all-genome flip rate.
 
 <!-- benchmark:thresholds -->
-| Trait | Lowest completeness, flip rate <5% | Bootstrap interval over genomes |
-| --- | ---: | ---: |
-| acidophile | 30% | [30%, 30%] |
-| aerobic | 60% | [60%, 70%] |
-| anaerobic | 50% | [40%, 50%] |
-| gram-positive | 40% | [30%, 50%] |
-| motile2+ | 100% | [90%, 100%] |
-| psychrophile | 30% | [30%, 30%] |
-| spore-forming | 90% | [80%, 90%] |
-| thermophile | 80% | [70%, 80%] |
+| Trait | Positive genomes | Lowest completeness keeping >95% of positives | Bootstrap interval | Lowest completeness, all-genome flip rate <5% |
+| --- | ---: | ---: | ---: | ---: |
+| acidophile | 2 of 324 | — | — | 30% |
+| aerobic | 136 of 324 | 80% | [70%, 90%] | 60% |
+| anaerobic | 136 of 324 | 60% | [50%, 70%] | 50% |
+| gram-positive | 91 of 324 | 70% | [50%, 100%] | 40% |
+| motile2+ | 112 of 324 | 100% | [100%, 100%] | 100% |
+| psychrophile | 2 of 324 | — | — | 30% |
+| spore-forming | 46 of 324 | 100% | [100%, 100%] | 90% |
+| thermophile | 56 of 324 | 100% | [100%, 100%] | 80% |
 <!-- /benchmark:thresholds -->
 
-Motility and spore formation are the fragile traits (5% thresholds at 100%
-and 90%); acidophile and psychrophile predictions barely move at any
-completeness. Contamination at 5–10% foreign bases shifts flip rates by
-roughly 0.5–2 points (e.g. gram-positive at L70: 0.021 clean, 0.025 at 5%,
-0.042 at 10%). The cheap simulation is trustworthy: shortcut validation
-against real re-annotation agrees on 318/320 comparisons with a mean
-probability difference of 0.008.
+Acidophile and psychrophile cannot be assessed: the models call almost no
+genome positive for either (see the positive counts), so their near-zero
+all-genome flip rates say nothing about robustness.
+
+Contamination at 5–10% foreign bases changes little compared with
+completeness. At 70% completeness the loss of positive calls stays within a
+few points for motility, spore formation and oxygen preference; Gram-positive
+is the exception, where 10% contamination raises the loss from 3% to 10%.
+
+The simulation drops genes by position instead of re-annotating fragments.
+Checked against real Prodigal and InterProScan runs on the same fragments
+(20 genomes, two levels), it gives the same class in 318 of 320 comparisons
+with a mean probability difference of 0.008.
 
 ## B. Annotation drift against the published features
 
-The published features file has an undocumented schema; characterization on
-20 seen genomes (`docs/benchmark/features_file_characterization.md`) finds
-column 3 consistent with (but not proven to be) hit counts and column 4
-consistent with (but not proven to be) best E-values. Drift therefore
-compares unfiltered presence sets.
+The published features file has an undocumented schema. Its fourth column
+behaves as a best E-value per Pfam
+(`docs/benchmark/features_file_characterization.md`), and the file is not
+filtered at the 1e-20 threshold the predictor applies. Drift is therefore
+measured with the same 1e-20 threshold on both sides. The two right-hand
+columns compare against the published sets as shipped; they mix annotation
+drift with the threshold difference and are shown only for reference.
 
 <!-- benchmark:drift -->
-| InterProScan | Genomes | Median Jaccard | Min | Genomes with prediction changes |
-| --- | ---: | ---: | ---: | ---: |
-| 5.63-95.0 | 150 | 0.686 | 0.499 | 26 |
-| 5.74-105.0 | 150 | 0.604 | 0.433 | 34 |
+| InterProScan | Genomes | Median Jaccard | Min | Genomes with a changed prediction | Median Jaccard, published unfiltered | Changed, published unfiltered |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 5.63-95.0 | 150 | 1.000 | 0.769 | 2 | 0.686 | 26 |
+| 5.74-105.0 | 150 | 0.857 | 0.716 | 15 | 0.604 | 34 |
 <!-- /benchmark:drift -->
 
-Drift is substantial: median Jaccard 0.60 against our 5.74-105.0 annotation
-(0.69 against the training-era 5.63-95.0), and 34 of 150 genomes change at
-least one prediction when the published set is fed to the models instead of
-ours. Annotation route matters as much as the models.
+With the training-era InterProScan 5.63-95.0 (Pfam 35.0) our pipeline
+reproduces the published Pfam sets almost exactly, and only 2 of 150 genomes
+change any prediction. That supports reading the fourth column as an E-value
+and shows the gene-calling and annotation route here matches the authors'.
+With InterProScan 5.74-105.0 (Pfam 37.3) similarity drops to a median of
+0.86 and 15 of 150 genomes change at least one prediction. The drift is the
+Pfam release, not the pipeline: models trained on Pfam 35.0 features are
+being applied to Pfam 37.3 annotations.
 
 ## D. Annotation robustness
 
@@ -174,10 +204,11 @@ labelled subset:
 | thermophile | 1.000 | 1.000 | 0.990 | 0.990 | 0.960 |
 <!-- /benchmark:robustness -->
 
-Gene caller and Pfam release barely move classes (agreement ≥0.94
-everywhere). E-value thresholds move probabilities more than classes, except
-for motility (0.82 agreement at 1e-30) and spore formation (0.89) — the same
-two traits degradation flagged as fragile.
+Gene caller barely moves classes. Pfam release agrees on at least 0.99 of
+calls for every trait except motility (0.94), consistent with the drift
+analysis. E-value thresholds matter most for motility (0.82 agreement at
+1e-30) and spore formation (0.89), the same two traits that are most
+sensitive to completeness.
 
 ## Limitations
 
@@ -189,8 +220,12 @@ two traits degradation flagged as fragile.
   genomic islands and plasmids preferentially.
 - Acidophile, psychrophile, and any gate-failing trait have stability results
   only. Seen-set numbers are training-set performance.
-- The published features file has an undocumented schema; Phase 6
-  conclusions depend on the characterization above.
+- The published features file has an undocumented schema. Drift results
+  assume its fourth column is an E-value; the near-exact match under
+  InterProScan 5.63-95.0 supports that but the authors have not confirmed it.
+- Degradation results are relative to the full-genome prediction, not to
+  measured phenotypes, and come from simulated fragment loss. Real MAGs were
+  not tested.
 
 ## Reproduce
 

@@ -3,10 +3,20 @@
 import csv
 import random
 import sys
+from pathlib import Path
 
 import yaml
 
 sys.path.insert(0, snakemake.params.repo)  # noqa: F821
+
+from bacdive_workflow.bench.metrics import (
+    MIN_CLASS_MEMBERS,
+    flip_rates,
+    lowest_level_below,
+    write_tsv,
+)
+
+BOOTSTRAPS = 200
 
 full: dict = {}
 with open("results/tables/predictions_full.tsv", newline="", encoding="utf-8") as handle:
@@ -29,142 +39,133 @@ with open(snakemake.input.genomes, newline="", encoding="utf-8") as handle:
 mapping = yaml.safe_load(open(snakemake.input.mapping, encoding="utf-8"))
 eligible = set(mapping.get("accuracy_traits", []))
 
-draws = []
+# Per (trait, level, contamination) and genome: draws, full-positive draws,
+# positives lost, negatives gained, labelled draws, correct draws, summed shift.
+cells: dict = {}
 for table in snakemake.input.tables:
     with open(table, newline="", encoding="utf-8") as handle:
-        draws.extend(csv.DictReader(handle, delimiter="\t"))
+        for row in csv.DictReader(handle, delimiter="\t"):
+            if row["prediction"] == "":
+                continue
+            trait, genome = row["trait"], row["genome"]
+            full_pred, full_prob = full[(genome, trait)]
+            pred = int(row["prediction"])
+            cell = cells.setdefault(
+                (trait, int(row["level"]), int(row["contamination"])), {}
+            ).setdefault(genome, [0, 0, 0, 0, 0, 0, 0.0])
+            cell[0] += 1
+            cell[1] += full_pred
+            cell[2] += full_pred == 1 and pred == 0
+            cell[3] += full_pred == 0 and pred == 1
+            label = genomes[genome]["labels"].get(trait)
+            if trait in eligible and label is not None:
+                cell[4] += 1
+                cell[5] += pred == label
+            cell[6] += abs(float(row["positive_probability"]) - full_prob)
+
+
+def pooled(per_genome, members):
+    """Sum the per-genome counters over `members` (repeats count repeatedly)."""
+    totals = [0, 0, 0, 0, 0, 0, 0.0]
+    for genome in members:
+        for index, value in enumerate(per_genome.get(genome, ())):
+            totals[index] += value
+    return totals
+
 
 summary = []
-grouped: dict = {}
-for row in draws:
-    grouped.setdefault(
-        (row["trait"], row["level"], row["contamination"], genomes[row["genome"]]["set"]), []
-    ).append(row)
-
-for (trait, level, contamination, group), rows in sorted(
-    grouped.items(), key=lambda kv: str(kv[0])
-):
-    total = len(rows)
-    flips = pos_to_neg = neg_to_pos = 0
-    correct = eligible_total = 0
-    shifts = []
-    for row in rows:
-        if row["prediction"] == "":
-            continue
-        full_pred, full_prob = full[(row["genome"], trait)]
-        pred = int(row["prediction"])
-        if pred != full_pred:
-            flips += 1
-            if full_pred == 1:
-                pos_to_neg += 1
-            else:
-                neg_to_pos += 1
-        shifts.append(abs(float(row["positive_probability"]) - full_prob))
-        label = genomes[row["genome"]]["labels"].get(trait)
-        if trait in eligible and label is not None:
-            eligible_total += 1
-            correct += pred == label
-    summary.append(
-        {
-            "trait": trait,
-            "level": level,
-            "contamination": contamination,
-            "set": group,
-            "draws": total,
-            "flip_rate": flips / total if total else "",
-            "pos_to_neg": pos_to_neg / total if total else "",
-            "neg_to_pos": neg_to_pos / total if total else "",
-            "accuracy": correct / eligible_total if eligible_total else "",
-            "mean_prob_shift": sum(shifts) / len(shifts) if shifts else "",
-        }
-    )
-
-with open(snakemake.output.summary, "w", newline="", encoding="utf-8") as handle:
-    writer = csv.DictWriter(
-        handle,
-        fieldnames=[
-            "trait",
-            "level",
-            "contamination",
-            "set",
-            "draws",
-            "flip_rate",
-            "pos_to_neg",
-            "neg_to_pos",
-            "accuracy",
-            "mean_prob_shift",
-        ],
-        delimiter="\t",
-    )
-    writer.writeheader()
-    writer.writerows(summary)
-
-# Per-trait lowest completeness with flip rate below 5% (c=0), with a
-# bootstrap interval over genomes.
-thresholds = []
-for trait in sorted({r["trait"] for r in draws}):
-    levels = sorted({int(r["level"]) for r in draws if r["contamination"] == "0"}, reverse=True)
-    chosen = ""
-    for level in levels:
-        subset = [
-            r
-            for r in draws
-            if r["trait"] == trait
-            and r["level"] == str(level)
-            and r["contamination"] == "0"
-            and r["prediction"] != ""
-        ]
-        if not subset:
-            continue
-        rate = sum(int(r["prediction"]) != full[(r["genome"], trait)][0] for r in subset) / len(
-            subset
+for (trait, level, contamination), per_genome in sorted(cells.items()):
+    for group in sorted({genomes[g]["set"] for g in per_genome}):
+        members = [g for g in per_genome if genomes[g]["set"] == group]
+        draws, positives, lost, gained, labelled, correct, shift = pooled(per_genome, members)
+        summary.append(
+            {
+                "trait": trait,
+                "level": level,
+                "contamination": contamination,
+                "set": group,
+                "genomes": len(members),
+                **flip_rates(draws, positives, lost, gained),
+                "full_positive_genomes": sum(1 for g in members if per_genome[g][1]),
+                "accuracy": correct / labelled if labelled else "",
+                "mean_prob_shift": shift / draws if draws else "",
+            }
         )
-        if rate < 0.05:
-            chosen = level
-        else:
-            break
-    genomes_for_trait = sorted({r["genome"] for r in draws if r["trait"] == trait})
-    rng = random.Random(snakemake.params.seed)
-    boots = []
-    for _ in range(200):
-        pick = [rng.choice(genomes_for_trait) for _ in genomes_for_trait]
-        best = ""
-        for level in levels:
-            subset = [
-                r
-                for r in draws
-                if r["trait"] == trait
-                and r["level"] == str(level)
-                and r["contamination"] == "0"
-                and r["prediction"] != ""
-                and r["genome"] in pick
-            ]
-            if not subset:
-                continue
-            rate = sum(int(r["prediction"]) != full[(r["genome"], trait)][0] for r in subset) / len(
-                subset
-            )
-            if rate < 0.05:
-                best = level
-            else:
-                break
-        if best != "":
-            boots.append(best)
-    boots.sort()
-    thresholds.append(
-        {
-            "trait": trait,
-            "lowest_level_flip_below_5pct": chosen,
-            "bootstrap_low": boots[int(0.025 * len(boots))] if boots else "",
-            "bootstrap_high": boots[min(len(boots) - 1, int(0.975 * len(boots)))] if boots else "",
-        }
-    )
 
-with open(snakemake.output.thresholds, "w", newline="", encoding="utf-8") as handle:
-    writer = csv.DictWriter(
-        handle,
-        fieldnames=["trait", "lowest_level_flip_below_5pct", "bootstrap_low", "bootstrap_high"],
-        delimiter="\t",
-    )
-    writer.writeheader()
-    writer.writerows(thresholds)
+write_tsv(
+    Path(snakemake.output.summary),
+    summary,
+    [
+        "trait",
+        "level",
+        "contamination",
+        "set",
+        "genomes",
+        "draws",
+        "flip_rate",
+        "pos_to_neg",
+        "neg_to_pos",
+        "full_positive_genomes",
+        "full_positive_draws",
+        "positive_loss_rate",
+        "full_negative_draws",
+        "negative_gain_rate",
+        "accuracy",
+        "mean_prob_shift",
+    ],
+)
+
+
+# Per-trait lowest completeness with a rate below 5% (no contamination, both
+# sets pooled), with a bootstrap interval over genomes. Two rates are reported:
+# flips over all genomes, and losses among genomes predicted positive on the
+# full genome. The second is left empty below MIN_CLASS_MEMBERS positives.
+def threshold(trait, members, rate):
+    by_level = {}
+    for (cell_trait, level, contamination), per_genome in cells.items():
+        if cell_trait == trait and contamination == 0:
+            totals = pooled(per_genome, members)
+            by_level[level] = flip_rates(*totals[:4])[rate]
+    return lowest_level_below(by_level)
+
+
+def interval(trait, members, rate, rng):
+    boots = []
+    for _ in range(BOOTSTRAPS):
+        pick = [rng.choice(members) for _ in members]
+        value = threshold(trait, pick, rate)
+        if value != "":
+            boots.append(value)
+    boots.sort()
+    if not boots:
+        return "", ""
+    return boots[int(0.025 * len(boots))], boots[min(len(boots) - 1, int(0.975 * len(boots)))]
+
+
+thresholds = []
+for trait in sorted({key[0] for key in cells}):
+    everyone = sorted({g for key, per in cells.items() if key[0] == trait for g in per})
+    positive = [g for g in everyone if full[(g, trait)][0] == 1]
+    rng = random.Random(snakemake.params.seed)
+    low, high = interval(trait, everyone, "flip_rate", rng)
+    row = {
+        "trait": trait,
+        "genomes": len(everyone),
+        "lowest_level_flip_below_5pct": threshold(trait, everyone, "flip_rate"),
+        "bootstrap_low": low,
+        "bootstrap_high": high,
+        "full_positive_genomes": len(positive),
+        "lowest_level_positive_loss_below_5pct": "",
+        "positive_bootstrap_low": "",
+        "positive_bootstrap_high": "",
+    }
+    if len(positive) >= MIN_CLASS_MEMBERS:
+        low, high = interval(trait, positive, "positive_loss_rate", rng)
+        row["lowest_level_positive_loss_below_5pct"] = threshold(
+            trait, positive, "positive_loss_rate"
+        )
+        row["positive_bootstrap_low"] = low
+        row["positive_bootstrap_high"] = high
+    thresholds.append(row)
+
+write_tsv(Path(snakemake.output.thresholds), thresholds, list(thresholds[0]))

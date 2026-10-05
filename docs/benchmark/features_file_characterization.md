@@ -30,8 +30,14 @@ annotation routes, not just thresholding.
 
 ## Consequence for drift
 
-Both interpretations stay unconfirmed, so analysis B compares unfiltered
-presence sets only, exactly as the plan requires for the ambiguous case.
-Prediction inputs additionally apply the 1e-20 threshold through the same
-`parse_pfams` code path as every other prediction, so any threshold effect is
-shared, not special-cased.
+Analysis B applies the same 1e-20 threshold to both sides: our annotation
+through `parse_pfams`, and the published set by keeping Pfams whose fourth
+column is at or below 1e-20. Jaccard similarity, gained and lost Pfams, and
+prediction changes are all computed on those matched sets. The comparison
+against the published sets as shipped (unfiltered) is kept in separate
+`_unfiltered` columns of `drift.tsv`, because it mixes annotation drift with
+the threshold difference.
+
+The full run supports the E-value reading: with the training-era
+InterProScan 5.63-95.0 the matched sets are identical for the median seen
+genome (see the drift table in `docs/BENCHMARK.md`).

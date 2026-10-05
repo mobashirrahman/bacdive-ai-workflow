@@ -1,8 +1,9 @@
 """Extract published Pfam presence sets for seen genomes from the training data.
 
 The features CSV header is mislabelled (values are strain, Pfam, count,
-E-value); columns are read positionally. Unfiltered presence sets are stored;
-filtering decisions belong to the Phase 6 characterization.
+E-value); columns are read positionally. Each set is stored unfiltered as
+`pfam<TAB>best E-value` so the drift rule can apply the same threshold to both
+sides. A missing or unparseable fourth column is stored as `inf`.
 """
 
 import csv
@@ -31,20 +32,26 @@ with open(snakemake.params.features, newline="", encoding="utf-8") as handle:
     for row in reader:
         if len(row) < 2:
             continue
-        features.setdefault(row[0], set()).add(row[1])
+        try:
+            evalue = float(row[3])
+        except (IndexError, ValueError):
+            evalue = float("inf")
+        strain = features.setdefault(row[0], {})
+        strain[row[1]] = min(evalue, strain.get(row[1], float("inf")))
 
 meta_rows = []
 for genome in genomes:
     candidates = index.get(genome, [])
     match_type = "missing"
-    pfams: set = set()
+    pfams: dict = {}
     if candidates:
         match_type = "exact"
         for row in candidates:
-            pfams |= features.get(row[cols[0]], set())
+            for pfam, evalue in features.get(row[cols[0]], {}).items():
+                pfams[pfam] = min(evalue, pfams.get(pfam, float("inf")))
     out = Path(f"results/published/{genome}.pfams")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("".join(p + "\n" for p in sorted(pfams)))
+    out.write_text("".join(f"{p}\t{pfams[p]!r}\n" for p in sorted(pfams)))
     meta_rows.append({"genome": genome, "match_type": match_type, "n_published": len(pfams)})
 
 with open(snakemake.output.meta, "w", newline="", encoding="utf-8") as handle:

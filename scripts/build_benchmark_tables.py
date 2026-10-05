@@ -51,55 +51,67 @@ def accuracy_table():
 
 def thresholds_table():
     lines = [
-        "| Trait | Lowest completeness, flip rate <5% | Bootstrap interval over genomes |",
-        "| --- | ---: | ---: |",
+        "| Trait | Positive genomes | Lowest completeness keeping >95% of positives "
+        "| Bootstrap interval | Lowest completeness, all-genome flip rate <5% |",
+        "| --- | ---: | ---: | ---: | ---: |",
     ]
     for row in read_tsv("degrade_thresholds.tsv"):
+        if row["lowest_level_positive_loss_below_5pct"]:
+            kept = f"{row['lowest_level_positive_loss_below_5pct']}%"
+            interval = f"[{row['positive_bootstrap_low']}%, {row['positive_bootstrap_high']}%]"
+        else:
+            kept = interval = "—"
         lines.append(
-            f"| {row['trait']} | {row['lowest_level_flip_below_5pct']}% | "
-            f"[{row['bootstrap_low']}%, {row['bootstrap_high']}%] |"
+            f"| {row['trait']} | {row['full_positive_genomes']} of {row['genomes']} | {kept} | "
+            f"{interval} | {row['lowest_level_flip_below_5pct']}% |"
         )
     return "\n".join(lines) + "\n"
 
 
 def flip_table():
+    levels = ("90", "70", "50", "30")
     lines = [
-        "| Trait | L100 | L70 | L50 | L30 | Direction at L50 |",
-        "| --- | ---: | ---: | ---: | ---: | --- |",
+        "| Trait | Positive genomes | "
+        + " | ".join(f"Lost at {level}%" for level in levels)
+        + " | Negatives turned positive at 50% |",
+        "| --- | ---: | " + " | ".join("---:" for _ in levels) + " | ---: |",
     ]
-    summary = read_tsv("degrade_summary.tsv")
+    summary = [
+        r
+        for r in read_tsv("degrade_summary.tsv")
+        if r["set"] == "unseen" and r["contamination"] == "0"
+    ]
     for trait in sorted({r["trait"] for r in summary}):
-        cells = {}
-        direction = ""
-        for row in summary:
-            if row["trait"] != trait or row["set"] != "unseen" or row["contamination"] != "0":
-                continue
-            cells[row["level"]] = fmt(row["flip_rate"])
-            if row["level"] == "50":
-                cells[row["level"]] = fmt(row["flip_rate"])
-                direction = f"+→− {fmt(row['pos_to_neg'])}, −→+ {fmt(row['neg_to_pos'])}"
+        by_level = {r["level"]: r for r in summary if r["trait"] == trait}
+        positives = by_level["100"]["full_positive_genomes"]
+        genomes = by_level["100"]["genomes"]
+        lost = " | ".join(fmt(by_level[level]["positive_loss_rate"], 2) for level in levels)
         lines.append(
-            f"| {trait} | {cells.get('100', '—')} | {cells.get('70', '—')} | "
-            f"{cells.get('50', '—')} | {cells.get('30', '—')} | {direction} |"
+            f"| {trait} | {positives} of {genomes} | {lost} | "
+            f"{fmt(by_level['50']['negative_gain_rate'])} |"
         )
     return "\n".join(lines) + "\n"
 
 
 def drift_table():
     lines = [
-        "| InterProScan | Genomes | Median Jaccard | Min | Genomes with prediction changes |",
-        "| --- | ---: | ---: | ---: | ---: |",
+        "| InterProScan | Genomes | Median Jaccard | Min | Genomes with a changed prediction "
+        "| Median Jaccard, published unfiltered | Changed, published unfiltered |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     by_version = {}
     for row in read_tsv("drift.tsv"):
         by_version.setdefault(row["ips_version"], []).append(row)
     for version in sorted(by_version):
         group = by_version[version]
-        jaccards = sorted(float(r["jaccard"]) for r in group if r["jaccard"])
+        jaccards = [float(r["jaccard"]) for r in group if r["jaccard"]]
+        unfiltered = [float(r["jaccard_unfiltered"]) for r in group if r["jaccard_unfiltered"]]
         changed = sum(1 for r in group if int(r["prediction_changes"]) > 0)
+        changed_unfiltered = sum(1 for r in group if int(r["prediction_changes_unfiltered"]) > 0)
         lines.append(
             f"| {version} | {len(group)} | {statistics.median(jaccards):.3f} | "
-            f"{min(jaccards):.3f} | {changed} |"
+            f"{min(jaccards):.3f} | {changed} | {statistics.median(unfiltered):.3f} | "
+            f"{changed_unfiltered} |"
         )
     return "\n".join(lines) + "\n"
 

@@ -30,8 +30,20 @@ def pfam_set(path):
 
 
 def published(path):
-    text = Path(path).read_text().strip()
-    return set(text.split()) if text else set()
+    evalues = {}
+    for line in Path(path).read_text().splitlines():
+        pfam, value = line.split("\t")
+        evalues[pfam] = float(value)
+    return evalues
+
+
+def changed_traits(first, second):
+    return sum(1 for trait in TRAITS if first.get(trait) != second.get(trait))
+
+
+model_pfams = set()
+for bundle in bundles.values():
+    model_pfams |= set(bundle["categories"])
 
 
 match_of = {}
@@ -47,17 +59,26 @@ for path in snakemake.input.primary + snakemake.input.legacy:
     ips = parts[parts.index("interpro") + 1]
     genome = Path(path).stem
     ours = pfam_set(path)
-    theirs = published(f"results/published/{genome}.pfams")
+    evalues = published(f"results/published/{genome}.pfams")
+    # Same threshold on both sides: `ours` is already filtered by parse_pfams.
+    theirs = drift_lib.threshold_set(evalues, evalue)
+    unfiltered = set(evalues)
     match_type, _ = match_of.get(genome, ("missing", 0))
-    ours_classes = predict_classes(ours) if ours else {}
-    their_classes = predict_classes(theirs) if theirs else {}
-    changes = sum(1 for t in TRAITS if ours_classes.get(t) != their_classes.get(t))
+    ours_classes = predict_classes(ours) if ours & model_pfams else {}
+    their_classes = predict_classes(theirs) if theirs & model_pfams else {}
+    unfiltered_classes = predict_classes(unfiltered) if unfiltered & model_pfams else {}
     rows.append(
-        drift_lib.drift_row(genome, ips, ours, theirs, changes, match_type),
+        drift_lib.drift_row(
+            genome,
+            ips,
+            ours,
+            theirs,
+            unfiltered,
+            changed_traits(ours_classes, their_classes),
+            changed_traits(ours_classes, unfiltered_classes),
+            match_type,
+        ),
     )
-    model_pfams = set()
-    for bundle in bundles.values():
-        model_pfams |= set(bundle["categories"])
     for pfam in sorted(set(ours) - set(theirs)):
         if pfam in model_pfams:
             gain_counter[(ips, pfam)] += 1
@@ -72,11 +93,14 @@ with open(snakemake.output.table, "w", newline="", encoding="utf-8") as handle:
             "genome",
             "ips_version",
             "jaccard",
+            "jaccard_unfiltered",
             "n_ours",
             "n_published",
+            "n_published_unfiltered",
             "n_gained",
             "n_lost",
             "prediction_changes",
+            "prediction_changes_unfiltered",
             "accession_match",
         ],
         delimiter="\t",
@@ -96,4 +120,6 @@ with open(snakemake.output.pfams, "w", newline="", encoding="utf-8") as handle:
     ranked += sorted(loss_counter.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
     for (ips, pfam), count in ranked[:100]:
         direction = "gained" if (ips, pfam) in gain_counter else "lost"
-        writer.writerow({"ips_version": ips, "pfam": pfam, "direction": direction, "genomes": count})
+        writer.writerow(
+            {"ips_version": ips, "pfam": pfam, "direction": direction, "genomes": count}
+        )

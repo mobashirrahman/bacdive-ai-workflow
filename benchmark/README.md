@@ -20,8 +20,7 @@ Config: `benchmark/config/config.yaml`. Selection `genomes.tsv` and
 Offline check (real models, fixture annotation, ~1 min):
 
 ```bash
-R=$(mktemp -d) && cp -r benchmark/.test/staged/* "$R/" \
-  && find "$R" -type f -exec touch {} +
+R=$(mktemp -d) && benchmark/.test/stage.sh "$R"
 snakemake -s benchmark/Snakefile --configfile benchmark/.test/config.yaml \
   --directory "$R" --cores 2 --sdm conda
 ```

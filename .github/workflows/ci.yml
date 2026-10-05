@@ -72,8 +72,7 @@ jobs:
       - name: Run the offline benchmark test config
         run: |
           R=$(mktemp -d)
-          cp -r benchmark/.test/staged/* "$R/"
-          find "$R" -type f -exec touch {} +
+          benchmark/.test/stage.sh "$R"
           snakemake -s benchmark/Snakefile --configfile benchmark/.test/config.yaml \
             --directory "$R" --cores 2 --sdm conda
           test -f "$R/results/tables/accuracy.tsv"

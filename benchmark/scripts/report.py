@@ -8,6 +8,7 @@ from pathlib import Path
 sys.path.insert(0, snakemake.params.repo)  # noqa: F821
 
 from bacdive_workflow.bench import figures
+from bacdive_workflow.bench.metrics import MIN_CLASS_MEMBERS
 
 
 def read_tsv(path):
@@ -29,10 +30,12 @@ for row in accuracy:
         row[key] = as_float(row.get(key))
     row["n"] = int(row["n"] or 0)
 degrade = read_tsv(by_name["degrade_summary.tsv"])
-flip = [r for r in degrade if r["contamination"] == "0"]
+flip = [r for r in degrade if r["contamination"] == "0" and r["set"] == "unseen"]
 for row in flip:
     row["level"] = int(row["level"])
-    row["flip_rate"] = as_float(row["flip_rate"]) or 0.0
+    row["full_positive_genomes"] = int(row["full_positive_genomes"])
+    enough = row["full_positive_genomes"] >= MIN_CLASS_MEMBERS
+    row["positive_loss_rate"] = as_float(row["positive_loss_rate"]) if enough else None
 drift = read_tsv(by_name["drift.tsv"])
 for row in drift:
     row["jaccard"] = as_float(row.get("jaccard"))

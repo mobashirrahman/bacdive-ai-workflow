@@ -4,9 +4,15 @@ import numpy as np
 import pytest
 
 from bacdive_workflow.bench import derive_seed
-from bacdive_workflow.bench.drift import drift_row, jaccard
+from bacdive_workflow.bench.drift import drift_row, jaccard, threshold_set
 from bacdive_workflow.bench.fragments import cut_fragments, draw_seed, keep_genes
-from bacdive_workflow.bench.metrics import accuracy_rows, stratified_bootstrap_ci, summarize
+from bacdive_workflow.bench.metrics import (
+    accuracy_rows,
+    flip_rates,
+    lowest_level_below,
+    stratified_bootstrap_ci,
+    summarize,
+)
 from bacdive_workflow.bench.select import calibrate, passes_gate, stratified_sample
 from bacdive_workflow.bench.selection import (
     assess_assembly,
@@ -102,9 +108,30 @@ def test_fragments_cover_contig_and_keep_interior_genes():
 def test_jaccard_and_drift_row():
     assert jaccard({"a"}, {"a"}) == 1.0
     assert jaccard(set(), set()) is None
-    row = drift_row("g", "5.74", {"a", "b"}, {"b", "c"}, 1, "exact")
+    published = {"b": 1e-30, "c": 1e-25, "d": 1e-5}
+    matched = threshold_set(published, 1e-20)
+    assert matched == {"b", "c"}
+    row = drift_row("g", "5.74", {"a", "b"}, matched, set(published), 1, 2, "exact")
     assert row["jaccard"] == pytest.approx(1 / 3)
+    assert row["jaccard_unfiltered"] == pytest.approx(1 / 4)
     assert row["n_gained"] == row["n_lost"] == 1
+    assert (row["n_published"], row["n_published_unfiltered"]) == (2, 3)
+    assert (row["prediction_changes"], row["prediction_changes_unfiltered"]) == (1, 2)
+
+
+def test_flip_rates_condition_on_the_full_genome_call():
+    # 100 draws, 10 from full-genome positives; 8 positives lost, 1 negative gained.
+    rates = flip_rates(100, 10, 8, 1)
+    assert rates["flip_rate"] == pytest.approx(0.09)
+    assert rates["positive_loss_rate"] == pytest.approx(0.8)
+    assert rates["negative_gain_rate"] == pytest.approx(1 / 90)
+    assert flip_rates(5, 0, 0, 0)["positive_loss_rate"] == ""
+
+
+def test_lowest_level_stops_at_the_first_failing_level():
+    assert lowest_level_below({100: 0.0, 90: 0.01, 80: 0.2, 70: 0.0}) == 90
+    assert lowest_level_below({100: 0.0, 90: ""}) == 100
+    assert lowest_level_below({100: 0.5}) == ""
 
 
 def test_calibration_gate():

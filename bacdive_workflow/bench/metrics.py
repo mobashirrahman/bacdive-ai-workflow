@@ -170,6 +170,42 @@ def accuracy_rows(records, traits, groups, bootstrap, seed):
     return rows
 
 
+def flip_rates(draws, positive_draws, positive_lost, negative_gained):
+    """Flip rates of degraded predictions against the full-genome prediction.
+
+    `flip_rate`, `pos_to_neg` and `neg_to_pos` are shares of all draws.
+    `positive_loss_rate` is the share of full-genome positives that turn
+    negative and `negative_gain_rate` the share of full-genome negatives that
+    turn positive; these two do not depend on how common the trait is.
+    """
+    negative_draws = draws - positive_draws
+
+    def share(count, total):
+        return count / total if total else ""
+
+    return {
+        "draws": draws,
+        "flip_rate": share(positive_lost + negative_gained, draws),
+        "pos_to_neg": share(positive_lost, draws),
+        "neg_to_pos": share(negative_gained, draws),
+        "full_positive_draws": positive_draws,
+        "positive_loss_rate": share(positive_lost, positive_draws),
+        "full_negative_draws": negative_draws,
+        "negative_gain_rate": share(negative_gained, negative_draws),
+    }
+
+
+def lowest_level_below(rate_by_level, limit=0.05):
+    """Lowest level reachable from the top with every rate on the way below `limit`."""
+    chosen = ""
+    for level in sorted(rate_by_level, reverse=True):
+        rate = rate_by_level[level]
+        if rate == "" or rate >= limit:
+            break
+        chosen = level
+    return chosen
+
+
 def write_tsv(path, rows, columns):
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as handle:

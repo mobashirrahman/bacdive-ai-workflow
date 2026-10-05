@@ -9,8 +9,22 @@ def _setup():
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    plt.rcParams.update({"figure.dpi": 150, "axes.spines.top": False, "axes.spines.right": False})
+    plt.rcParams.update(
+        {
+            "figure.dpi": 150,
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+            # Fixed salt: SVG element ids are otherwise random per run.
+            "svg.hashsalt": "bacdive-benchmark",
+        }
+    )
     return plt
+
+
+def _save(fig, path_png, path_svg):
+    """Write both formats without the creation date, so reruns are byte-identical."""
+    fig.savefig(path_png, metadata={"Software": None})
+    fig.savefig(path_svg, metadata={"Date": None})
 
 
 def accuracy_figure(rows, path_png, path_svg):
@@ -43,28 +57,36 @@ def accuracy_figure(rows, path_png, path_svg):
     ax.set_ylabel("Balanced accuracy (seen = training-set upper bound)")
     ax.set_title("Accuracy by trait and set")
     fig.tight_layout()
-    fig.savefig(path_png)
-    fig.savefig(path_svg)
+    _save(fig, path_png, path_svg)
     plt.close(fig)
 
 
 def flip_figure(rows, path_png, path_svg):
+    """Share of full-genome positives lost per completeness level, one line per trait.
+
+    `rows` are one set's uncontaminated summary rows. Traits with too few
+    full-genome positives have no `positive_loss_rate` and are not drawn.
+    """
     plt = _setup()
     fig, ax = plt.subplots(figsize=(7, 4))
-    levels = sorted({r["level"] for r in rows})
-    traits = sorted({r["trait"] for r in rows})
-    for ti, trait in enumerate(traits):
-        series = [r for r in rows if r["trait"] == trait]
-        xs = [r["level"] for r in series]
-        ys = [r["flip_rate"] for r in series]
-        ax.plot(xs, ys, marker="o", color=PALETTE[ti % len(PALETTE)], label=trait)
+    drawn = [r for r in rows if r["positive_loss_rate"] is not None]
+    for ti, trait in enumerate(sorted({r["trait"] for r in drawn})):
+        series = sorted((r for r in drawn if r["trait"] == trait), key=lambda r: r["level"])
+        ax.plot(
+            [r["level"] for r in series],
+            [r["positive_loss_rate"] for r in series],
+            marker="o",
+            color=PALETTE[ti % len(PALETTE)],
+            label=f"{trait} (n={series[0]['full_positive_genomes']})",
+        )
+    ax.invert_xaxis()
+    ax.set_ylim(0, 1)
     ax.set_xlabel("Completeness level (% bases retained)")
-    ax.set_ylabel("Flip rate vs full-genome prediction")
-    ax.set_title(f"Flip rate vs completeness (levels {levels})")
+    ax.set_ylabel("Share of full-genome positives called negative")
+    ax.set_title("Positive calls lost with completeness (unseen set, n = positive genomes)")
     ax.legend(fontsize="small")
     fig.tight_layout()
-    fig.savefig(path_png)
-    fig.savefig(path_svg)
+    _save(fig, path_png, path_svg)
     plt.close(fig)
 
 
@@ -73,12 +95,11 @@ def drift_figure(rows, path_png, path_svg):
     fig, ax = plt.subplots(figsize=(6, 4))
     values = [r["jaccard"] for r in rows if r["jaccard"] is not None]
     ax.hist(values, bins=20, color=PALETTE[0])
-    ax.set_xlabel("Jaccard similarity (ours vs published Pfam set)")
+    ax.set_xlabel("Jaccard similarity, ours vs published Pfam set (same E-value threshold)")
     ax.set_ylabel(f"Genomes (n={len(values)})")
     ax.set_title("Annotation drift")
     fig.tight_layout()
-    fig.savefig(path_png)
-    fig.savefig(path_svg)
+    _save(fig, path_png, path_svg)
     plt.close(fig)
 
 
@@ -99,6 +120,5 @@ def robustness_heatmap(rows, path_png, path_svg):
     ax.set_title("Robustness: class agreement with primary configuration (n in table)")
     fig.colorbar(im, ax=ax, label="Agreement")
     fig.tight_layout()
-    fig.savefig(path_png)
-    fig.savefig(path_svg)
+    _save(fig, path_png, path_svg)
     plt.close(fig)

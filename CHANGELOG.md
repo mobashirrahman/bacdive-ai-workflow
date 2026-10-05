@@ -11,17 +11,20 @@
 - Leakage-controlled accuracy on 150 seen and 174 unseen genomes (32
   genus-unseen): unseen matches seen within bootstrap intervals on all six
   eligible traits; 35 disagreements listed for follow-up.
-- Annotation drift against the published training features (median Jaccard
-  0.60 vs our 5.74-105.0 annotation, 0.69 vs training-era 5.63-95.0; 34/150
-  genomes change a prediction), with the undocumented features-file schema
-  characterized from data.
+- Annotation drift against the published training features at a matched
+  E-value threshold: the training-era InterProScan 5.63-95.0 reproduces the
+  published Pfam sets (2/150 genomes change a prediction); 5.74-105.0 gives a
+  median Jaccard of 0.86 and changes a prediction in 15/150 genomes.
 - Completeness degradation by seeded fragment loss with real re-annotation
-  shortcut validation (318/320 agree): motility and spore formation fragile
-  (5% flip thresholds at 100% and 90% completeness), losses run
-  positive-to-negative.
+  shortcut validation (318/320 agree). Reported as the share of full-genome
+  positive calls lost: at 50% completeness 97% of spore-forming, 84% of
+  motile and 63% of thermophile calls turn negative, while negatives almost
+  never turn positive.
 - Annotation robustness across E-value, gene caller, and Pfam release
   (class agreement at least 0.94 except motility/spore formation at strict
   E-values).
+- `benchmark/.test/stage.sh` stages the offline fixture with timestamps in
+  dependency order, so the test run never invokes the real InterProScan.
 - Frozen selection (`benchmark/config/genomes.tsv`, `label_mapping.yaml`,
   `training_lookup.json`) with calibrated BacDive mappings (all six traits
   pass the 95%-on-500 gate), offline `.test` config, and
